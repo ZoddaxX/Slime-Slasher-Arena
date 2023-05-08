@@ -14,11 +14,13 @@ public class PlayerController : MonoBehaviour
     private float vertical;
     private Rigidbody2D rigidBody;
     private Vector2 velocidad;
+    private bool jumpButton;
 
     // Start is called before the first frame update
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
+        jumpButton = false;
     }
 
     // Update is called once per frame
@@ -41,14 +43,20 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (onFloor && !jumpButton && vertical == 0)
+        {
+            jumpButton = true;
+        }
+
         if (horizontal != 0f)
         {
             rigidBody.AddForce(new Vector2(horizontal * velHorizontalJugador, 0), ForceMode2D.Impulse);
         } 
 
-        if (vertical != 0f && onFloor)
+        if (vertical != 0f && onFloor && jumpButton)
         {
             rigidBody.AddForce(new Vector2(0, vertical * velVerticalJugador), ForceMode2D.Impulse);
+            jumpButton = false;
             Debug.Log("Estas saltando");
         }
 
