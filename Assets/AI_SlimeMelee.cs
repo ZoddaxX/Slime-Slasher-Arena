@@ -43,20 +43,18 @@ public class AI_SlimeMelee : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.7f, Plataform);
         if (hit.collider != null)
         {
-            Debug.Log("Slime en tierra");
             canJump = true;
             timeOnGround += Time.deltaTime;
         }
         else
         {
-            Debug.Log("Slime en el aire");
             canJump = false;
             timeOnGround = 0;
         }
 
         if (Time.time - lastJump > jumpCooldown && timeOnGround > jumpCooldown && canJump)
         {
-            Debug.Log("Slime Salta");
+            ;
             if (distancia <= agro_Range)
             {
                 slime_agro();

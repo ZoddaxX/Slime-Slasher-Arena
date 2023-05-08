@@ -9,18 +9,24 @@ public class PlayerController : MonoBehaviour
     public float velVerticalJugador;
     public float velHorizontalMax;
     public LayerMask Platform;
+    public float velSlide;
+
+
     private bool onFloor;
     private float horizontal;
     private float vertical;
     private Rigidbody2D rigidBody;
     private Vector2 velocidad;
     private bool jumpButton;
+    private bool crouch;
+    private bool isSliding;
 
     // Start is called before the first frame update
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
         jumpButton = false;
+        crouch = false;
     }
 
     // Update is called once per frame
@@ -30,11 +36,11 @@ public class PlayerController : MonoBehaviour
         if (rayo.collider != null)
         {
             onFloor = true;
-        } 
+        }
         else
         {
             onFloor = false;
-        } 
+        }
 
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
@@ -48,10 +54,10 @@ public class PlayerController : MonoBehaviour
             jumpButton = true;
         }
 
-        if (horizontal != 0f)
+        if (horizontal != 0f && !isSliding)
         {
             rigidBody.AddForce(new Vector2(horizontal * velHorizontalJugador, 0), ForceMode2D.Impulse);
-        } 
+        }
 
         if (vertical != 0f && onFloor && jumpButton)
         {
@@ -60,9 +66,45 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Estas saltando");
         }
 
+        if (vertical < 0 && !crouch)
+        {
+            crouch = true;
+            transform.localScale = new Vector2(transform.localScale.x, transform.localScale.y * 0.5f);
+
+        }
+
+        else if (vertical >= 0 && crouch)
+        {
+            crouch = false;
+            transform.localScale = new Vector2(transform.localScale.x, transform.localScale.y * 2f);
+        }
+        if (crouch && onFloor && !isSliding && horizontal != 0)
+        {
+            isSliding = true;
+            //rigidBody.AddForce() = new Vector2(horizontal * velSlide, 0);
+            StartCoroutine(SlideRoutine());
+        }
+
+
         velocidad = rigidBody.velocity;
         velocidad.x = Mathf.Clamp(velocidad.x, -velHorizontalMax, velHorizontalMax);
         rigidBody.velocity = velocidad;
-    }    
+    }
+
+    IEnumerator SlideRoutine()     
+    {
+        float slideTimer = 0;
+        Debug.Log("start slide");
+        while (slideTimer < 1) 
+        {
+            slideTimer += Time.deltaTime;
+            rigidBody.AddForce(Vector2.right * horizontal * 2f, ForceMode2D.Force);
+            Debug.Log("sliding");
+            yield return null;
+        }
+        isSliding = false;
+        Debug.Log("end slide");
+    }
+
 }
 
