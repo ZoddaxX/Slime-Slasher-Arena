@@ -468,8 +468,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanciaRayo: 2
-  velHorizontalJugador: 1
-  velVerticalJugador: 1
+  velHorizontalJugador: 4
+  velVerticalJugador: 8
+  velHorizontalMax: 5
   Platform:
     serializedVersion: 2
     m_Bits: 8
