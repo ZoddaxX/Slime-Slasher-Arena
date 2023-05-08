@@ -9,6 +9,7 @@ public class AI_SlimeMelee : MonoBehaviour
     public int velHorizontal;
     public int velSalto;
     public float jumpCooldown;
+    public LayerMask Plataform;
 
     private float lastJump = 0;
     private Rigidbody2D slimeRB;
@@ -18,6 +19,8 @@ public class AI_SlimeMelee : MonoBehaviour
     private float slime_x;
     private float slime_y;
     private double distancia;
+    private bool canJump = true;
+    private float timeOnGround = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -35,8 +38,23 @@ public class AI_SlimeMelee : MonoBehaviour
         slimeRB = GetComponent<Rigidbody2D>();
 
         distancia = Mathf.Pow(Mathf.Pow(slime_x - player_x, 2) + Mathf.Pow(slime_y - player_y, 2),0.5f);
-        
-        if (Time.time - lastJump > jumpCooldown)
+
+
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.7f, Plataform);
+        if (hit.collider != null)
+        {
+            Debug.Log("Slime en tierra");
+            canJump = true;
+            timeOnGround += Time.deltaTime;
+        }
+        else
+        {
+            Debug.Log("Slime en el aire");
+            canJump = false;
+            timeOnGround = 0;
+        }
+
+        if (Time.time - lastJump > jumpCooldown && timeOnGround > jumpCooldown && canJump)
         {
             Debug.Log("Slime Salta");
             if (distancia <= agro_Range)
@@ -47,7 +65,7 @@ public class AI_SlimeMelee : MonoBehaviour
             else
             {
                 jump(sentido, velHorizontal, velSalto);
-                
+
                 if (sentido)
                 {
                     sentido = false;
@@ -60,10 +78,19 @@ public class AI_SlimeMelee : MonoBehaviour
             }
 
             lastJump = Time.time;
+            canJump = false;
+            timeOnGround = 0;
+         
         }
-        
     }
-
+    void OnCollisionEnter(Collision2D collision)
+    {
+        if (collision.gameObject.layer == Plataform
+            && !canJump && timeOnGround > jumpCooldown)
+        {
+            canJump = true;
+        }
+    }
     void jump(bool sentido_s, int velHorizontal, int velSalto)
     {
         if (sentido_s)

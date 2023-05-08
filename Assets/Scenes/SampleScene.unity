@@ -448,7 +448,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1847935732}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.55, y: -0.91, z: 0}
+  m_LocalPosition: {x: -3.55, y: -1.43, z: 0}
   m_LocalScale: {x: 1, y: 2.4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -468,7 +468,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanciaRayo: 2
-  velHorizontalJugador: 1
+  velHorizontalJugador: 0.1
   velVerticalJugador: 1
   Platform:
     serializedVersion: 2
@@ -508,8 +508,11 @@ MonoBehaviour:
   player: {fileID: 1847935732}
   agro_Range: 100
   velHorizontal: 4
-  velSalto: 8
-  jumpCooldown: 5
+  velSalto: 10
+  jumpCooldown: 1
+  Plataform:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!50 &2066227473
 Rigidbody2D:
   serializedVersion: 4
@@ -620,7 +623,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2066227471}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.44, y: -1.68, z: 0}
+  m_LocalPosition: {x: 6.41, y: -2.15, z: 0}
   m_LocalScale: {x: 1.5964, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
