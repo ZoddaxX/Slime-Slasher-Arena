@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     public float velSlide;
     public float velDesSlide;
     public float slideTime;
+    public float slideCooldown;
 
 
     private bool onFloor;
@@ -22,6 +23,7 @@ public class PlayerController : MonoBehaviour
     private bool jumpButton;
     private bool crouch;
     private bool isSliding;
+    private float slideTimerCool;
 
     // Start is called before the first frame update
     void Start()
@@ -82,9 +84,13 @@ public class PlayerController : MonoBehaviour
         }
         if (crouch && onFloor && !isSliding && horizontal != 0)
         {
-            isSliding = true;
+            if (slideTimerCool > slideCooldown)
+            {
+                isSliding = true;
             //rigidBody.AddForce() = new Vector2(horizontal * velSlide, 0);
-            StartCoroutine(SlideRoutine());
+            StartCoroutine(SlideRoutine()); 
+            }
+            else slideTimerCool +=Time.deltaTime;
         }
 
 
@@ -110,6 +116,7 @@ public class PlayerController : MonoBehaviour
             yield return null;
         }
         isSliding = false;
+        slideTimer =Time.deltaTime;
         Debug.Log("end slide");
     }
 }
