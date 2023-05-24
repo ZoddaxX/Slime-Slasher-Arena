@@ -10,11 +10,11 @@ public class Slime_Stats : MonoBehaviour
   {
     health -= damage;
 
-    Debug.Log("Auchis!");
-
     if (health <= 0)
     {
       Death();
+    } else{
+      Debug.Log("Auchis");
     }
   }
 
