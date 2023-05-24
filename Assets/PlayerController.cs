@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     public float velHorizontalMax;
     public LayerMask Platform;
     public float velSlide;
+    public float velDesSlide;
+    public float slideTime;
 
 
     private bool onFloor;
@@ -94,17 +96,21 @@ public class PlayerController : MonoBehaviour
     IEnumerator SlideRoutine()     
     {
         float slideTimer = 0;
+        float velocidad_slide = rigidBody.velocity.x;
+        bool Sliding = true;
         Debug.Log("start slide");
-        while (slideTimer < 1) 
+        while (velocidad_slide != 0 || Sliding) 
         {
             slideTimer += Time.deltaTime;
-            rigidBody.AddForce(Vector2.right * horizontal * 2f, ForceMode2D.Force);
+            Sliding = false;
+            velocidad_slide = rigidBody.velocity.x;
+            if (slideTimer < slideTime) rigidBody.AddForce(Vector2.right * horizontal * velSlide, ForceMode2D.Force);
+            else if (velocidad_slide != 0) rigidBody.AddForce(Vector2.left * horizontal * velDesSlide, ForceMode2D.Force);
             Debug.Log("sliding");
             yield return null;
         }
         isSliding = false;
         Debug.Log("end slide");
     }
-
 }
 
