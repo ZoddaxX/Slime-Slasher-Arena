@@ -81,7 +81,7 @@ public class AI_SlimeMelee : MonoBehaviour
          
         }
     }
-    void OnCollisionEnter(Collision2D collision)
+    void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.layer == Plataform
             && !canJump && timeOnGround > jumpCooldown)
