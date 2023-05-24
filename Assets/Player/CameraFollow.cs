@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CamaraRodrigo : MonoBehaviour
+public class CameraFollow : MonoBehaviour
 {
     public float speedFollow = 2f;
     public Transform player;

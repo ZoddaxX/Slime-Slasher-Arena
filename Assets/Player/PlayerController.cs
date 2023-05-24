@@ -116,7 +116,7 @@ public class PlayerController : MonoBehaviour
             yield return null;
         }
         isSliding = false;
-        slideTimer =Time.deltaTime;
+        slideTimer = Time.deltaTime;
         Debug.Log("end slide");
     }
 }
