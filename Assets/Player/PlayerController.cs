@@ -10,9 +10,9 @@ public class PlayerController : MonoBehaviour
     public float velHorizontalMax;
     public LayerMask Platform;
     public float velSlide;
-    public float velDesSlide;
     public float slideTime;
     public float slideCooldown;
+    public bool facingRight = true;
 
 
     private bool onFloor;
@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 velocidad;
     private bool jumpButton;
     private bool crouch;
+    private bool canSlide = true;
     private bool isSliding;
     private float slideTimerCool;
 
@@ -53,14 +54,29 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (isSliding)
+        {
+            return;
+        }
         if (onFloor && !jumpButton && vertical == 0)
         {
             jumpButton = true;
         }
 
-        if (horizontal != 0f && !isSliding)
+        if (horizontal != 0f && !crouch)
         {
-            rigidBody.AddForce(new Vector2(horizontal * velHorizontalJugador, 0), ForceMode2D.Impulse);
+            Debug.Log(rigidBody.velocity.x);
+            if (Mathf.Abs(rigidBody.velocity.x) <= velHorizontalMax-2 && !isSliding)
+            {
+                rigidBody.AddForce(new Vector2(horizontal * velHorizontalJugador, 0), ForceMode2D.Impulse);
+                
+            }
+            
+
+            else if (Mathf.Abs(rigidBody.velocity.x) >= velHorizontalMax-2 && !isSliding)
+            {
+                rigidBody.velocity = Vector2.right * velHorizontalMax * horizontal + Vector2.up * rigidBody.velocity.y;
+            }
         }
 
         if (vertical != 0f && onFloor && jumpButton)
@@ -84,39 +100,40 @@ public class PlayerController : MonoBehaviour
         }
         if (crouch && onFloor && !isSliding && horizontal != 0)
         {
-            if (slideTimerCool > slideCooldown)
+            if (slideTimerCool > slideCooldown && canSlide)
             {
-                isSliding = true;
-            //rigidBody.AddForce() = new Vector2(horizontal * velSlide, 0);
-            StartCoroutine(SlideRoutine()); 
+                StartCoroutine(SlideRoutine()); 
             }
             else slideTimerCool +=Time.deltaTime;
         }
+        if ((horizontal > 0 && !facingRight) | (horizontal < 0 && facingRight))
+        {
+            Turn();
+        }
 
-
-        velocidad = rigidBody.velocity;
-        velocidad.x = Mathf.Clamp(velocidad.x, -velHorizontalMax, velHorizontalMax);
-        rigidBody.velocity = velocidad;
     }
+
+    private void Turn()
+    {
+        //stores scale and flips the player along the x axis, 
+        Vector3 scale = transform.localScale;
+        scale.x *= -1;
+        transform.localScale = scale;
+
+        facingRight = !facingRight;
+    }
+
 
     IEnumerator SlideRoutine()     
     {
-        float slideTimer = 0;
-        float velocidad_slide = rigidBody.velocity.x;
-        bool Sliding = true;
+        canSlide = false;
+        isSliding = true;
+        rigidBody.velocity = new Vector2(horizontal * 2* velSlide, 0f);
         Debug.Log("start slide");
-        while (velocidad_slide != 0 || Sliding) 
-        {
-            slideTimer += Time.deltaTime;
-            Sliding = false;
-            velocidad_slide = rigidBody.velocity.x;
-            if (slideTimer < slideTime) rigidBody.AddForce(Vector2.right * horizontal * velSlide, ForceMode2D.Force);
-            else if (velocidad_slide != 0) rigidBody.AddForce(Vector2.left * horizontal * velDesSlide, ForceMode2D.Force);
-            Debug.Log("sliding");
-            yield return null;
-        }
+        yield return new WaitForSeconds(slideTime);
         isSliding = false;
-        slideTimer = Time.deltaTime;
+        yield return new WaitForSeconds(slideCooldown);
+        canSlide = true;
         Debug.Log("end slide");
     }
 }
