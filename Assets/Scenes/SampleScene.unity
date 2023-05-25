@@ -248,7 +248,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 720c0621b18325f4aa48dd1dc3419cee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
 --- !u!61 &97641995
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -609,8 +608,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04402768b617f1844b6783f7ca171196, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedFollow: 2
-  player: {fileID: 1847935736}
 --- !u!1 &694327364
 GameObject:
   m_ObjectHideFlags: 0
@@ -735,7 +732,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99ea052028b91784183d5f725a5cf573, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
 --- !u!1 &734810201
 GameObject:
   m_ObjectHideFlags: 0
@@ -1086,9 +1082,11 @@ GameObject:
   - component: {fileID: 1847935737}
   - component: {fileID: 1847935738}
   - component: {fileID: 1847935739}
+  - component: {fileID: 1847935741}
+  - component: {fileID: 1847935740}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Jugador
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1272,6 +1270,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df6b84d3808078f41b37deba0991f346, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1847935740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847935732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c58d485acd120ccc1836ccedeeb8ba09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+--- !u!114 &1847935741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847935732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce022fb0636bbb447907f4ed1febc334, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controladorGolpe: {fileID: 1073009234}
+  radioGolpe: 1
+  "da\xF1oGolpeLigero": 5
+  "da\xF1oGolpePesado": 10
+  tiempoEntreAtaqueLigero: 0.5
+  tiempoEntreAtaquePesado: 2
+  tiempoSiguienteAtaque: 0
 --- !u!1 &2066227471
 GameObject:
   m_ObjectHideFlags: 0
@@ -1287,6 +1317,7 @@ GameObject:
   - component: {fileID: 2066227477}
   - component: {fileID: 2066227478}
   - component: {fileID: 2066227479}
+  - component: {fileID: 2066227480}
   m_Layer: 0
   m_Name: Slime
   m_TagString: Enemigo
@@ -1470,6 +1501,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+--- !u!114 &2066227480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2066227471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f97ee631feaed6ed88a40036db9483fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controladorGolpe: {fileID: 0}
+  radioGolpe: 0
+  "da\xF1oGolpe": 15
+  tiempoEntreAtaque: 2
+  tiempoSiguienteAtaque: 0
+  Slime: {fileID: 2066227478}
+  Player: {fileID: 1847935738}
 --- !u!1 &2068966346
 GameObject:
   m_ObjectHideFlags: 0
