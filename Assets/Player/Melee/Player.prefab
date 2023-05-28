@@ -163,6 +163,7 @@ MonoBehaviour:
   slideTime: 1
   slideCooldown: 0
   facingRight: 1
+  isSliding: 0
 --- !u!61 &8204650090437841389
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -202,12 +203,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controladorGolpe: {fileID: 8204650091785290053}
-  radioGolpe: 5
+  radioGolpe: 1.5
   "da\xF1oGolpeLigero": 1
   "da\xF1oGolpePesado": 2
   tiempoEntreAtaqueLigero: 0.25
   tiempoEntreAtaquePesado: 1
-  tiempoSiguienteAtaque: 0
 --- !u!1 &8204650091785290054
 GameObject:
   m_ObjectHideFlags: 0
@@ -232,7 +232,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8204650091785290054}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.81, y: -0.046, z: 0}
+  m_LocalPosition: {x: 1.75, y: -0.046, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
