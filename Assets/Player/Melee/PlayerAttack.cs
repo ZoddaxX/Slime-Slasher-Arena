@@ -12,9 +12,12 @@ public class PlayerAttack : MonoBehaviour
   [SerializeField] private float tiempoEntreAtaquePesado;
   [SerializeField] private float tiempoSiguienteAtaque;
   private bool flag = true;
-
-  // Update is called once per frame
-  void Update()
+    private void Start()
+    {
+        tiempoSiguienteAtaque = 0f;
+    }
+    // Update is called once per frame
+    void Update()
   {
     if (tiempoSiguienteAtaque > 0)
     { 
@@ -22,14 +25,17 @@ public class PlayerAttack : MonoBehaviour
       tiempoSiguienteAtaque -= Time.deltaTime;
     }
 
-    if (Input.GetButtonDown("Fire1") && tiempoSiguienteAtaque <= 0 && flag){
+    if (Input.GetMouseButtonDown(0) && tiempoSiguienteAtaque <= 0 && flag)
+    {
       GolpeLigero();
+      Debug.Log('a');
       tiempoSiguienteAtaque = tiempoEntreAtaqueLigero;
       flag = false;
     }
 
-    if (Input.GetButtonDown("Fire3") && tiempoSiguienteAtaque <= 0 && flag){
+    if (Input.GetMouseButtonDown(1) && tiempoSiguienteAtaque <= 0 && flag){
       GolpePesado();
+      Debug.Log('b');
       tiempoSiguienteAtaque = tiempoEntreAtaquePesado;
       flag = false;
     }

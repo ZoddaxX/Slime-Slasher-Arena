@@ -11,6 +11,8 @@ public class AI_SlimeMelee : MonoBehaviour
     public float jumpCooldown;
     public LayerMask Plataform;
 
+    Slime_Stats slimeStats;
+    [SerializeField] private GameObject slime;
     private float lastJump = 0;
     private Rigidbody2D slimeRB;
     private bool sentido;
@@ -36,9 +38,14 @@ public class AI_SlimeMelee : MonoBehaviour
         slime_x = transform.position.x;
         slime_y = transform.position.y;
         slimeRB = GetComponent<Rigidbody2D>();
+        slimeStats = slime.GetComponent<Slime_Stats>();
 
         distancia = Mathf.Pow(Mathf.Pow(slime_x - player_x, 2) + Mathf.Pow(slime_y - player_y, 2),0.5f);
-
+        
+        if (!slimeStats.alive)
+        {
+            return;
+        }
 
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.7f, Plataform);
         if (hit.collider != null)
@@ -54,7 +61,7 @@ public class AI_SlimeMelee : MonoBehaviour
 
         if (Time.time - lastJump > jumpCooldown && timeOnGround > jumpCooldown && canJump)
         {
-            ;
+            Debug.Log(slimeStats.alive);
             if (distancia <= agro_Range)
             {
                 slime_agro();

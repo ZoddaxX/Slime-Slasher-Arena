@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 503921a2c1394fb49ae6110e8fba6df5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 8204650090437841379, guid: 32ff904121945f74b9d10848319c3463, type: 3}
   agro_Range: 10
   velHorizontal: 1
   velSalto: 8
@@ -159,6 +159,7 @@ MonoBehaviour:
   Plataform:
     serializedVersion: 2
     m_Bits: 8
+  slime: {fileID: 5941031085044499005}
 --- !u!61 &5941031085044498980
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -197,4 +198,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1fcb023f43451048b5cd45aa413fba5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  alive: 1
   health: 100

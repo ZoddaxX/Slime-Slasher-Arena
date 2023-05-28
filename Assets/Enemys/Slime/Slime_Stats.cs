@@ -4,22 +4,43 @@ using UnityEngine;
 
 public class Slime_Stats : MonoBehaviour
 {
-  [SerializeField] private float health;
-  
-  public void TomarDaño(float damage)
+  public bool alive = true;
+  [SerializeField] private float health = 10;
+    private Rigidbody2D rb;
+
+    private void Start()
+    {
+        //Load rigidbody
+        rb = GetComponent<Rigidbody2D>();
+    }
+    public void TomarDaño(float damage)
   {
     health -= damage;
 
     if (health <= 0)
     {
-      Death();
+      Death(rb);
+      alive = false;
     } else{
       Debug.Log("Auchis");
     }
   }
 
-  private void Death()
+  private void Death(Rigidbody2D rb)
   {
-    Debug.Log("Me morí x.x");
-  }
+        rb.simulated = false;
+        Debug.Log("Me morí x.x");
+
+        // Get the sprite renderer component
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+
+        // Change the transparency of the sprite
+        Color spriteColor = spriteRenderer.color;
+        spriteColor.a = 0.5f; // Set the desired alpha value (0.0f to 1.0f)
+        spriteRenderer.color = spriteColor;
+
+        // Delayed destruction
+        float destroyDelay = 2f; 
+        Destroy(gameObject, destroyDelay);
+    }
 }

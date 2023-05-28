@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8204650090437841378}
   - component: {fileID: 8204650090437841390}
   - component: {fileID: 8204650090437841389}
+  - component: {fileID: 5956834635678011609}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -159,8 +160,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   velSlide: 20
-  velDesSlide: 5
   slideTime: 1
+  slideCooldown: 0
+  facingRight: 1
 --- !u!61 &8204650090437841389
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -187,6 +189,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &5956834635678011609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8204650090437841379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce022fb0636bbb447907f4ed1febc334, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controladorGolpe: {fileID: 8204650091785290053}
+  radioGolpe: 5
+  "da\xF1oGolpeLigero": 1
+  "da\xF1oGolpePesado": 2
+  tiempoEntreAtaqueLigero: 0.25
+  tiempoEntreAtaquePesado: 1
+  tiempoSiguienteAtaque: 0
 --- !u!1 &8204650091785290054
 GameObject:
   m_ObjectHideFlags: 0
