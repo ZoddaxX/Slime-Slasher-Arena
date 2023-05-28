@@ -596,7 +596,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04402768b617f1844b6783f7ca171196, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedFollow: 2
+  speedFollow: 8
   player: {fileID: 713062730}
 --- !u!1001 &617467500
 PrefabInstance:
@@ -605,6 +605,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5941031085044498979, guid: 403c16415b08a4a4399ab9c33c6f5acc, type: 3}
+      propertyPath: m_Simulated
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5941031085044498979, guid: 403c16415b08a4a4399ab9c33c6f5acc, type: 3}
       propertyPath: m_GravityScale
       value: 5
@@ -794,11 +798,6 @@ Transform:
   m_Father: {fileID: 2106711017}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &705234361 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8204650091785290053, guid: 32ff904121945f74b9d10848319c3463, type: 3}
-  m_PrefabInstance: {fileID: 713062728}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &713062728
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -806,6 +805,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5956834635678011609, guid: 32ff904121945f74b9d10848319c3463, type: 3}
+      propertyPath: radioGolpe
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5956834635678011609, guid: 32ff904121945f74b9d10848319c3463, type: 3}
+      propertyPath: "da\xF1oGolpePesado"
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5956834635678011609, guid: 32ff904121945f74b9d10848319c3463, type: 3}
+      propertyPath: tiempoSiguienteAtaque
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8204650090437841379, guid: 32ff904121945f74b9d10848319c3463, type: 3}
       propertyPath: m_Name
       value: Player
@@ -890,6 +901,14 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8204650091785290053, guid: 32ff904121945f74b9d10848319c3463, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 8204650091785290053, guid: 32ff904121945f74b9d10848319c3463, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32ff904121945f74b9d10848319c3463, type: 3}
 --- !u!1 &713062729 stripped
@@ -902,25 +921,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8204650090437841391, guid: 32ff904121945f74b9d10848319c3463, type: 3}
   m_PrefabInstance: {fileID: 713062728}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &713062736
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 713062729}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce022fb0636bbb447907f4ed1febc334, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controladorGolpe: {fileID: 705234361}
-  radioGolpe: 0
-  "da\xF1oGolpeLigero": 0
-  "da\xF1oGolpePesado": 0
-  tiempoEntreAtaqueLigero: 0
-  tiempoEntreAtaquePesado: 0
-  tiempoSiguienteAtaque: 0
 --- !u!1 &734810201
 GameObject:
   m_ObjectHideFlags: 0
