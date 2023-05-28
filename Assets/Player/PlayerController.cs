@@ -13,25 +13,26 @@ public class PlayerController : MonoBehaviour
     public float slideTime;
     public float slideCooldown;
     public bool facingRight = true;
-
+    public bool isSliding;
 
     private bool onFloor;
     private float horizontal;
     private float vertical;
     private Rigidbody2D rigidBody;
     private Vector2 velocidad;
-    private bool jumpButton;
-    private bool crouch;
-    private bool canSlide = true;
-    private bool isSliding;
+    private bool canJump;
+    private bool isCrouching;
+    private bool canSlide;
     private float slideTimerCool;
 
     // Start is called before the first frame update
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
-        jumpButton = false;
-        crouch = false;
+        canJump = false;
+        isCrouching = false;
+        canSlide = true;
+        slideTimerCool = 10f;
     }
 
     // Update is called once per frame
@@ -58,14 +59,14 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
-        if (onFloor && !jumpButton && vertical == 0)
-        {
-            jumpButton = true;
-        }
 
-        if (horizontal != 0f && !crouch)
+        if (onFloor && !canJump && vertical == 0)
         {
-            Debug.Log(rigidBody.velocity.x);
+            canJump = true;
+        }
+        // Movimiento
+        if (horizontal != 0f && !isCrouching)
+        {
             if (Mathf.Abs(rigidBody.velocity.x) <= velHorizontalMax-2 && !isSliding)
             {
                 rigidBody.AddForce(new Vector2(horizontal * velHorizontalJugador, 0), ForceMode2D.Impulse);
@@ -78,27 +79,29 @@ public class PlayerController : MonoBehaviour
                 rigidBody.velocity = Vector2.right * velHorizontalMax * horizontal + Vector2.up * rigidBody.velocity.y;
             }
         }
-
-        if (vertical != 0f && onFloor && jumpButton)
+        // Saltar
+        if (vertical > 0f && onFloor && canJump)
         {
             rigidBody.AddForce(new Vector2(0, vertical * velVerticalJugador), ForceMode2D.Impulse);
-            jumpButton = false;
-            Debug.Log("Estas saltando");
+            canJump = false;
+            Debug.Log("Saltando");
         }
-
-        if (vertical < 0 && !crouch)
+        // Agacharse
+        if (vertical < 0 && !isCrouching)
         {
-            crouch = true;
+            isCrouching = true;
+            Debug.Log("Agachado");
             transform.localScale = new Vector2(transform.localScale.x, transform.localScale.y * 0.5f);
 
         }
 
-        else if (vertical >= 0 && crouch)
+        else if (vertical >= 0 && isCrouching)
         {
-            crouch = false;
+            isCrouching = false;
             transform.localScale = new Vector2(transform.localScale.x, transform.localScale.y * 2f);
         }
-        if (crouch && onFloor && !isSliding && horizontal != 0)
+        // Slide
+        if (isCrouching && onFloor && !isSliding && horizontal != 0)
         {
             if (slideTimerCool > slideCooldown && canSlide)
             {

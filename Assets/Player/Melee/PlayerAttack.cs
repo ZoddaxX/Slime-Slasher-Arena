@@ -4,38 +4,46 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
+    PlayerController playerController;
   [SerializeField] private Transform controladorGolpe;
   [SerializeField] private float radioGolpe;
   [SerializeField] private float dañoGolpeLigero;
   [SerializeField] private float dañoGolpePesado;
   [SerializeField] private float tiempoEntreAtaqueLigero;
   [SerializeField] private float tiempoEntreAtaquePesado;
-  [SerializeField] private float tiempoSiguienteAtaque;
+  private float tiempoSiguienteAtaque;
   private bool flag = true;
     private void Start()
     {
         tiempoSiguienteAtaque = 0f;
+        playerController = GetComponent<PlayerController>();
     }
     // Update is called once per frame
     void Update()
   {
+    //No atacar cuando esta en slide
+    if(playerController.isSliding)
+    {
+      return;
+    }
+    //
     if (tiempoSiguienteAtaque > 0)
     { 
       flag = true;
       tiempoSiguienteAtaque -= Time.deltaTime;
     }
-
+    //Ataque ligero
     if (Input.GetMouseButtonDown(0) && tiempoSiguienteAtaque <= 0 && flag)
     {
       GolpeLigero();
-      Debug.Log('a');
+      Debug.Log("atk ligero");
       tiempoSiguienteAtaque = tiempoEntreAtaqueLigero;
       flag = false;
     }
-
+    //Ataque pesado
     if (Input.GetMouseButtonDown(1) && tiempoSiguienteAtaque <= 0 && flag){
       GolpePesado();
-      Debug.Log('b');
+      Debug.Log("atk fuerte");
       tiempoSiguienteAtaque = tiempoEntreAtaquePesado;
       flag = false;
     }
