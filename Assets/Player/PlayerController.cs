@@ -14,6 +14,9 @@ public class PlayerController : MonoBehaviour
     public float slideCooldown;
     public bool facingRight = true;
     public bool isSliding;
+    public float alturaKnockback;
+    public float fuerzaKnockback;
+    public float invisTimer;
 
     private bool onFloor;
     private float horizontal;
@@ -24,6 +27,8 @@ public class PlayerController : MonoBehaviour
     private bool isCrouching;
     private bool canSlide;
     private float slideTimerCool;
+    private bool onKnockback;
+    private bool canKnockback;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +38,8 @@ public class PlayerController : MonoBehaviour
         isCrouching = false;
         canSlide = true;
         slideTimerCool = 10f;
+        onKnockback = false;
+        canKnockback = true;
     }
 
     // Update is called once per frame
@@ -65,16 +72,16 @@ public class PlayerController : MonoBehaviour
             canJump = true;
         }
         // Movimiento
-        if (horizontal != 0f && !isCrouching)
+        if (horizontal != 0f && !isCrouching && !onKnockback)
         {
-            if (Mathf.Abs(rigidBody.velocity.x) <= velHorizontalMax-2 && !isSliding)
+            if (Mathf.Abs(rigidBody.velocity.x) <= velHorizontalMax-2 && !isSliding && !onKnockback)
             {
                 rigidBody.AddForce(new Vector2(horizontal * velHorizontalJugador, 0), ForceMode2D.Impulse);
                 
             }
             
 
-            else if (Mathf.Abs(rigidBody.velocity.x) >= velHorizontalMax-2 && !isSliding)
+            else if (Mathf.Abs(rigidBody.velocity.x) >= velHorizontalMax-2 && !isSliding && !onKnockback)
             {
                 rigidBody.velocity = Vector2.right * velHorizontalMax * horizontal + Vector2.up * rigidBody.velocity.y;
             }
@@ -101,7 +108,7 @@ public class PlayerController : MonoBehaviour
             transform.localScale = new Vector2(transform.localScale.x, transform.localScale.y * 2f);
         }
         // Slide
-        if (isCrouching && onFloor && !isSliding && horizontal != 0)
+        if (isCrouching && onFloor && !isSliding && horizontal != 0 && !onKnockback)
         {
             if (slideTimerCool > slideCooldown && canSlide)
             {
@@ -138,6 +145,45 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(slideCooldown);
         canSlide = true;
         Debug.Log("end slide");
+    }
+
+
+    IEnumerator invisCooldown(){
+        float tiempo = 0;
+        while (tiempo <= invisTimer)
+            {
+                tiempo += Time.deltaTime;
+                yield return 0;
+            }
+            canKnockback = true; 
+            yield return 0;
+    }
+
+    IEnumerator isOnKnockback(){
+        yield return new WaitForSeconds(0.5f);
+        while (!onFloor){
+            yield return 0;
+        }
+        onKnockback = false;
+        Debug.Log("PUEDES MOVERTE");
+        yield return 0;
+    }
+
+    private void OnCollisionEnter2D(Collision2D enemigo){
+        Debug.Log("RAR");
+        if (enemigo.gameObject.CompareTag("Enemigo") && canKnockback)
+        {
+            canKnockback = false;
+            onKnockback = true;
+            Debug.Log("SAS");
+            Vector2 direccion = transform.position - enemigo.gameObject.transform.position;
+            direccion.Normalize();
+            direccion += alturaKnockback * Vector2.up;
+            rigidBody.AddForce(direccion * fuerzaKnockback, ForceMode2D.Impulse);
+
+            StartCoroutine(invisCooldown());
+            StartCoroutine(isOnKnockback());
+        }
     }
 }
 
