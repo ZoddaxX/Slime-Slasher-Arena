@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class Slime_Stats : MonoBehaviour
 {
+  public Transform jugador;
   public bool alive = true;
+  public float fuerzaKnockback;
+  public float alturaKnockback;
   [SerializeField] private float health = 10;
     private Rigidbody2D rb;
-
     private void Start()
     {
         //Load rigidbody
         rb = GetComponent<Rigidbody2D>();
     }
-    public void TomarDaño(float damage)
+    public void TomarDaño(float damage, float multiplier)
   {
     health -= damage;
 
@@ -21,8 +23,13 @@ public class Slime_Stats : MonoBehaviour
     {
       Death(rb);
       alive = false;
-    } else{
+    } else {
       Debug.Log("Auchis");
+      Debug.Log("SAS");
+      Vector2 direccion = transform.position - jugador.position;
+      direccion.Normalize();
+      direccion += alturaKnockback * Vector2.up;
+      rb.AddForce(direccion * fuerzaKnockback * multiplier, ForceMode2D.Impulse);
     }
   }
 
@@ -44,3 +51,4 @@ public class Slime_Stats : MonoBehaviour
         Destroy(gameObject, destroyDelay);
     }
 }
+

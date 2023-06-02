@@ -11,6 +11,7 @@ public class PlayerAttack : MonoBehaviour
   [SerializeField] private float dañoGolpePesado;
   [SerializeField] private float tiempoEntreAtaqueLigero;
   [SerializeField] private float tiempoEntreAtaquePesado;
+  public int heavyKnockbackMultiplyer;
   private float tiempoSiguienteAtaque;
   private bool flag = true;
     private void Start()
@@ -33,7 +34,7 @@ public class PlayerAttack : MonoBehaviour
       tiempoSiguienteAtaque -= Time.deltaTime;
     }
     //Ataque ligero
-    if (Input.GetMouseButtonDown(0) && tiempoSiguienteAtaque <= 0 && flag)
+    if (Input.GetKey("x") && tiempoSiguienteAtaque <= 0 && flag) // GetMouseButtonDown(0)
     {
       GolpeLigero();
       Debug.Log("atk ligero");
@@ -41,7 +42,7 @@ public class PlayerAttack : MonoBehaviour
       flag = false;
     }
     //Ataque pesado
-    if (Input.GetMouseButtonDown(1) && tiempoSiguienteAtaque <= 0 && flag){
+    if (Input.GetKey("c") && tiempoSiguienteAtaque <= 0 && flag){ // GetMouseButtonDown(1)
       GolpePesado();
       Debug.Log("atk fuerte");
       tiempoSiguienteAtaque = tiempoEntreAtaquePesado;
@@ -55,7 +56,7 @@ public class PlayerAttack : MonoBehaviour
       foreach (Collider2D colisionador in objetos)
       {
         if (colisionador.CompareTag("Enemigo")){
-          colisionador.transform.GetComponent<Slime_Stats>().TomarDaño(dañoGolpeLigero);
+          colisionador.transform.GetComponent<Slime_Stats>().TomarDaño(dañoGolpeLigero, 1);
         }
       }
     }
@@ -66,7 +67,7 @@ public class PlayerAttack : MonoBehaviour
       foreach (Collider2D colisionador in objetos)
       {
         if (colisionador.CompareTag("Enemigo")){
-          colisionador.transform.GetComponent<Slime_Stats>().TomarDaño(dañoGolpePesado);
+          colisionador.transform.GetComponent<Slime_Stats>().TomarDaño(dañoGolpePesado, heavyKnockbackMultiplyer);
         }
       }
     }

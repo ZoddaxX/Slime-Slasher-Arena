@@ -611,7 +611,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5941031085044498981, guid: 403c16415b08a4a4399ab9c33c6f5acc, type: 3}
       propertyPath: health
-      value: 10
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5941031085044498981, guid: 403c16415b08a4a4399ab9c33c6f5acc, type: 3}
+      propertyPath: jugador
+      value: 
+      objectReference: {fileID: 713062730}
+    - target: {fileID: 5941031085044498981, guid: 403c16415b08a4a4399ab9c33c6f5acc, type: 3}
+      propertyPath: alturaKnockback
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5941031085044498981, guid: 403c16415b08a4a4399ab9c33c6f5acc, type: 3}
+      propertyPath: fuerzaKnockback
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5941031085044498982, guid: 403c16415b08a4a4399ab9c33c6f5acc, type: 3}
       propertyPath: m_RootOrder
@@ -806,9 +818,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5956834635678011609, guid: 32ff904121945f74b9d10848319c3463, type: 3}
+      propertyPath: heavyKnockbackMultiplyer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8204650090437841379, guid: 32ff904121945f74b9d10848319c3463, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8204650090437841379, guid: 32ff904121945f74b9d10848319c3463, type: 3}
+      propertyPath: m_TagString
+      value: Jugador
       objectReference: {fileID: 0}
     - target: {fileID: 8204650090437841390, guid: 32ff904121945f74b9d10848319c3463, type: 3}
       propertyPath: accel
@@ -906,6 +926,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8204650091785290054, guid: 32ff904121945f74b9d10848319c3463, type: 3}
+      propertyPath: m_TagString
+      value: HitBox
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32ff904121945f74b9d10848319c3463, type: 3}
 --- !u!1 &713062729 stripped
@@ -936,6 +960,21 @@ MonoBehaviour:
   "da\xF1oGolpePesado": 0
   tiempoEntreAtaqueLigero: 0
   tiempoEntreAtaquePesado: 0
+  heavyKnockbackMultiplyer: 0
+--- !u!114 &713062743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 713062729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c58d485acd120ccc1836ccedeeb8ba09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  slider: {fileID: 0}
 --- !u!1 &892308544
 GameObject:
   m_ObjectHideFlags: 0
@@ -1076,6 +1115,25 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5941031085044499005, guid: 403c16415b08a4a4399ab9c33c6f5acc, type: 3}
   m_PrefabInstance: {fileID: 617467500}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1307967226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1307967218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f97ee631feaed6ed88a40036db9483fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controladorGolpe: {fileID: 0}
+  radioGolpe: 0
+  "da\xF1oGolpe": 0
+  tiempoEntreAtaque: 0
+  tiempoSiguienteAtaque: 0
+  Slime: {fileID: 0}
+  Player: {fileID: 0}
 --- !u!1 &1794447690
 GameObject:
   m_ObjectHideFlags: 0
