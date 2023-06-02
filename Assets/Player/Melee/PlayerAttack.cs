@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
   public int heavyKnockbackMultiplyer;
+  public GameObject attack;
 
   [SerializeField] private Transform controladorGolpe;
   [SerializeField] private float radioGolpe;
@@ -40,6 +41,7 @@ public class PlayerAttack : MonoBehaviour
     if (Input.GetKey("x") && tiempoSiguienteAtaque <= 0 && flag) // GetMouseButtonDown(0)
     {
       GolpeLigero();
+      StartCoroutine(DrawAttack(0.1f));
       Debug.Log("atk ligero");
       tiempoSiguienteAtaque = tiempoEntreAtaqueLigero;
       flag = false;
@@ -47,6 +49,7 @@ public class PlayerAttack : MonoBehaviour
     //Ataque pesado
     if (Input.GetKey("c") && tiempoSiguienteAtaque <= 0 && flag){ // GetMouseButtonDown(1)
       GolpePesado();
+      StartCoroutine(DrawAttack(0.2f));
       Debug.Log("atk fuerte");
       tiempoSiguienteAtaque = tiempoEntreAtaquePesado;
       flag = false;
@@ -74,7 +77,12 @@ public class PlayerAttack : MonoBehaviour
         }
       }
     }
-  
+    IEnumerator DrawAttack(float timer)
+    {
+        attack.SetActive(true);
+        yield return new WaitForSeconds(timer);
+        attack.SetActive(false);
+    }
 
   void OnDrawGizmos(){
   Gizmos.color = Color.red;
