@@ -4,23 +4,26 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    PlayerController playerController;
+  public int heavyKnockbackMultiplyer;
+
   [SerializeField] private Transform controladorGolpe;
   [SerializeField] private float radioGolpe;
   [SerializeField] private float dañoGolpeLigero;
   [SerializeField] private float dañoGolpePesado;
   [SerializeField] private float tiempoEntreAtaqueLigero;
   [SerializeField] private float tiempoEntreAtaquePesado;
-  public int heavyKnockbackMultiplyer;
+  
+  private PlayerController playerController;
   private float tiempoSiguienteAtaque;
   private bool flag = true;
-    private void Start()
-    {
-        tiempoSiguienteAtaque = 0f;
-        playerController = GetComponent<PlayerController>();
-    }
+
+  private void Start()
+  {
+    tiempoSiguienteAtaque = 0f;
+    playerController = GetComponent<PlayerController>();
+  }
     // Update is called once per frame
-    void Update()
+  void Update()
   {
     //No atacar cuando esta en slide
     if(playerController.isSliding)

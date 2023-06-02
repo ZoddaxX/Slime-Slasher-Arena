@@ -22,7 +22,6 @@ public class PlayerController : MonoBehaviour
     private float horizontal;
     private float vertical;
     private Rigidbody2D rigidBody;
-    private Vector2 velocidad;
     private bool canJump;
     private bool isCrouching;
     private bool canSlide;

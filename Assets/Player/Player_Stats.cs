@@ -5,20 +5,30 @@ using UnityEngine.UI;
 
 public class Player_Stats : MonoBehaviour
 {
-  [SerializeField] private float health;
   public Slider slider;
-  //public HealthBar healthBar;
-  
+  public bool alive = true;
+  public GameObject gameOverPanel;
+
+  [SerializeField] private float maxHp;
+  [SerializeField] private float health;
+
+  public void Start()
+  {
+    health = maxHp;
+  }
   public void TomarDaño(float damage)
   {
     health -= damage;
-    //healthBar.setHealth(health, 100);
-
-    if (health > 0) Death();
+    slider.transform.GetComponent<HpBarScript>().setHealth(health,maxHp);
+    if (health <= 0) Death(alive);
   }
 
-  private void Death()
+  private void Death(bool alive)
   {
+    alive = false;
+    gameObject.GetComponent<PlayerAttack>().enabled = false;
+    gameObject.GetComponent<PlayerController>().enabled = false;
+    gameOverPanel.SetActive(true);
     Debug.Log("Game Over.");
   }
 }

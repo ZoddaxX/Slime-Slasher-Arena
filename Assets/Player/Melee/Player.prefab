@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8204650090437841390}
   - component: {fileID: 8204650090437841389}
   - component: {fileID: 5956834635678011609}
+  - component: {fileID: 4691168060286217773}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -153,17 +154,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanciaRayo: 1.25
-  velHorizontalJugador: 8
+  velHorizontalJugador: 0
   velVerticalJugador: 20
   velHorizontalMax: 10
   Platform:
     serializedVersion: 2
     m_Bits: 8
-  velSlide: 20
-  slideTime: 1
+  velSlide: 15
+  slideTime: 0.2
   slideCooldown: 0
   facingRight: 1
   isSliding: 0
+  alturaKnockback: 3
+  fuerzaKnockback: 4
+  invisTimer: 1
 --- !u!61 &8204650090437841389
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -208,6 +212,21 @@ MonoBehaviour:
   "da\xF1oGolpePesado": 2
   tiempoEntreAtaqueLigero: 0.25
   tiempoEntreAtaquePesado: 1
+  heavyKnockbackMultiplyer: 2
+--- !u!114 &4691168060286217773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8204650090437841379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c58d485acd120ccc1836ccedeeb8ba09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 20
+  slider: {fileID: 0}
 --- !u!1 &8204650091785290054
 GameObject:
   m_ObjectHideFlags: 0

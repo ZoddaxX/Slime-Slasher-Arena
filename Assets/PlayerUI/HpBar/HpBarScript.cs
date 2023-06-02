@@ -9,6 +9,7 @@ public class HpBarScript : MonoBehaviour
 
     public void setHealth(float currentHealth, float maxHealth)
     {
-        slider.value = 20 * (int)Mathf.Round(currentHealth / maxHealth);
+        slider.value =  (int) Mathf.Round(20 * currentHealth / maxHealth);
+        Debug.Log(slider.value);
     }
 }
