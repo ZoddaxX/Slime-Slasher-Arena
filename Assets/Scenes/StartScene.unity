@@ -972,6 +972,14 @@ PrefabInstance:
       propertyPath: heavyKnockbackMultiplyer
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8204650090437841377, guid: 32ff904121945f74b9d10848319c3463, type: 3}
+      propertyPath: m_Mass
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 8204650090437841377, guid: 32ff904121945f74b9d10848319c3463, type: 3}
+      propertyPath: m_LinearDrag
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8204650090437841379, guid: 32ff904121945f74b9d10848319c3463, type: 3}
       propertyPath: m_Name
       value: Player
@@ -990,7 +998,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8204650090437841390, guid: 32ff904121945f74b9d10848319c3463, type: 3}
       propertyPath: velSlide
-      value: 15
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8204650090437841390, guid: 32ff904121945f74b9d10848319c3463, type: 3}
       propertyPath: slideTime
@@ -998,7 +1006,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8204650090437841390, guid: 32ff904121945f74b9d10848319c3463, type: 3}
       propertyPath: invisTimer
-      value: 1
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 8204650090437841390, guid: 32ff904121945f74b9d10848319c3463, type: 3}
       propertyPath: accelRampUp
@@ -1022,11 +1030,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8204650090437841390, guid: 32ff904121945f74b9d10848319c3463, type: 3}
       propertyPath: fuerzaKnockback
-      value: 4
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8204650090437841390, guid: 32ff904121945f74b9d10848319c3463, type: 3}
+      propertyPath: velHorizontalMax
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 8204650090437841390, guid: 32ff904121945f74b9d10848319c3463, type: 3}
+      propertyPath: velVerticalJugador
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 8204650090437841390, guid: 32ff904121945f74b9d10848319c3463, type: 3}
       propertyPath: velHorizontalJugador
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8204650090437841391, guid: 32ff904121945f74b9d10848319c3463, type: 3}
       propertyPath: m_RootOrder
