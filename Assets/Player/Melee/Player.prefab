@@ -1,5 +1,89 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1747429669
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1747429670}
+  - component: {fileID: 1747429671}
+  m_Layer: 0
+  m_Name: Attack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1747429670
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1747429669}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 11.29, y: 8.741833, z: 0}
+  m_LocalScale: {x: 2.5, y: 0.41666663, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8204650091785290053}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &1747429671
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1747429669}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Color: {r: 0.9716981, g: 0.95872885, b: 0.75627446, a: 0.49019608}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &8204650090437841379
 GameObject:
   m_ObjectHideFlags: 0
@@ -15,6 +99,7 @@ GameObject:
   - component: {fileID: 8204650090437841390}
   - component: {fileID: 8204650090437841389}
   - component: {fileID: 5956834635678011609}
+  - component: {fileID: 4691168060286217773}
   m_Layer: 10
   m_Name: Player
   m_TagString: Jugador
@@ -154,13 +239,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanciaRayo: 1.25
-  velHorizontalJugador: 0
-  velVerticalJugador: 20
-  velHorizontalMax: 10
+  velHorizontalJugador: 5
+  velVerticalJugador: 25
+  velHorizontalMax: 14
   Platform:
     serializedVersion: 2
     m_Bits: 8
-  velSlide: 15
+  velSlide: 20
   slideTime: 0.2
   slideCooldown: 0
   facingRight: 1
@@ -206,13 +291,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce022fb0636bbb447907f4ed1febc334, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heavyKnockbackMultiplyer: 2
+  attack: {fileID: 8204650091785290054}
   controladorGolpe: {fileID: 8204650091785290053}
   radioGolpe: 1.5
   "da\xF1oGolpeLigero": 1
   "da\xF1oGolpePesado": 2
   tiempoEntreAtaqueLigero: 0.25
   tiempoEntreAtaquePesado: 1
-  heavyKnockbackMultiplyer: 2
 --- !u!114 &4691168060286217773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,8 +311,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c58d485acd120ccc1836ccedeeb8ba09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 20
-  slider: {fileID: 0}
+  slider: {fileID: 309527621758031976, guid: 267f5c2837d20ef4c97481c26106a5f5, type: 3}
+  alive: 1
+  gameOverPanel: {fileID: 1277551843494296787, guid: 5521d899b2ea83c429a83f3b6b7a5219, type: 3}
+  maxHp: 50
+  health: 50
 --- !u!1 &8204650091785290054
 GameObject:
   m_ObjectHideFlags: 0
@@ -254,7 +343,8 @@ Transform:
   m_LocalPosition: {x: 1.75, y: -0.046, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1747429670}
   m_Father: {fileID: 8204650090437841391}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
