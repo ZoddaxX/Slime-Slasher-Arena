@@ -27,6 +27,7 @@ public class AI_SlimeMelee : MonoBehaviour
     void Start()
     {
         sentido = true;
+        Debug.Log("INICIO");
     }
 
     // Update is called once per frame
@@ -46,7 +47,7 @@ public class AI_SlimeMelee : MonoBehaviour
             return;
         }
 
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.7f, Plataform);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.7f + Mathf.Abs(1 - gameObject.transform.localScale.y), Plataform);
         if (hit.collider != null)
         {
             canJump = true;
@@ -104,6 +105,7 @@ public class AI_SlimeMelee : MonoBehaviour
         {
             slimeRB.AddForce(new Vector2(-velHorizontal, velSalto), ForceMode2D.Impulse);
         }
+        Debug.Log("SLIME SALTANDO :D");
     }
 
     void slime_agro()
