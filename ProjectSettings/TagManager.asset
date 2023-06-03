@@ -18,8 +18,8 @@ TagManager:
   - Hitbox
   - Barrier
   - Wall
-  - 
-  - 
+  - Enemies
+  - Player
   - 
   - 
   - 

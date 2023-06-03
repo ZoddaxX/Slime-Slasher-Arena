@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour
         slideTimerCool = 10f;
         onKnockback = false;
         canKnockback = true;
+
     }
 
     // Update is called once per frame
@@ -168,7 +169,7 @@ public class PlayerController : MonoBehaviour
         yield return 0;
     }
 
-    private void OnCollisionEnter2D(Collision2D enemigo){
+    public void PlayerTrigger(Collider2D enemigo){
         Debug.Log("RAR");
         if (enemigo.gameObject.CompareTag("Enemigo") && canKnockback)
         {
