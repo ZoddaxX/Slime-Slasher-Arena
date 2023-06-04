@@ -38,12 +38,12 @@ public class SlimeAttack : MonoBehaviour
       PlayerCollider.transform.GetComponent<Player_Stats>().TomarDaño(dañoGolpe);
     }
     */
+
   }
 
   private void Golpe(){
-    var playerRender = PlayerGameObject.GetComponent<Renderer>();
     PlayerCollider.transform.GetComponent<Player_Stats>().TomarDaño(dañoGolpe);
-    if ( (tiempoSiguienteAtaque) > (tiempoEntreAtaque - 0.3f)){
+    for (float i = 0; i < 0.3, i += Time.deltaTime){
       playerRender.material.SetColor("_Color", Color.red);
     }
     playerRender.material.SetColor("_Color", Color.white);
