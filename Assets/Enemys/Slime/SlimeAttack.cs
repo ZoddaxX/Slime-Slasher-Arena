@@ -24,7 +24,7 @@ public class SlimeAttack : MonoBehaviour
       tiempoSiguienteAtaque -= Time.deltaTime;
     }
 
-    if (SlimeCollider.IsTouching(PlayerHitbox) && tiempoSiguienteAtaque <= 0){
+    if (SlimeCollider.IsTouching(PlayerHitbox)){
       Debug.Log("player recibe daño");
       Golpe();
       tiempoSiguienteAtaque = tiempoEntreAtaque;
