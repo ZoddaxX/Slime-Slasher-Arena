@@ -38,7 +38,7 @@ public class PlayerAttack : MonoBehaviour
       tiempoSiguienteAtaque -= Time.deltaTime;
     }
     //Ataque ligero
-    if (Input.GetKey("x") && tiempoSiguienteAtaque <= 0 && flag) // GetMouseButtonDown(0)
+    if ( (Input.GetKey("x") || Input.GetMouseButtonDown(0)) && tiempoSiguienteAtaque <= 0 && flag) // GetMouseButtonDown(0)
     {
       GolpeLigero();
       StartCoroutine(DrawAttack(0.1f));
@@ -47,7 +47,7 @@ public class PlayerAttack : MonoBehaviour
       flag = false;
     }
     //Ataque pesado
-    if (Input.GetKey("c") && tiempoSiguienteAtaque <= 0 && flag){ // GetMouseButtonDown(1)
+    if ((Input.GetKey("c") || Input.GetMouseButtonDown(1))&& tiempoSiguienteAtaque <= 0 && flag){ // GetMouseButtonDown(1)
       GolpePesado();
       StartCoroutine(DrawAttack(0.2f));
       Debug.Log("atk fuerte");
