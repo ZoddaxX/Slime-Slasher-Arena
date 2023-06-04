@@ -13,7 +13,7 @@ public class blobAttack : MonoBehaviour
             Player_Stats playerStats = collision.gameObject.GetComponent<Player_Stats>();
             if (playerStats != null)
             {
-                playerStats.TomarDaño(damage);
+                playerStats.TomarDano(damage);
             }
 
             Destroy(gameObject); // Destroy the bullet projectile
