@@ -252,5 +252,8 @@ MonoBehaviour:
   "da\xF1oGolpe": 10
   tiempoEntreAtaque: 0.5
   tiempoSiguienteAtaque: 1
-  Slime: {fileID: 5941031085044498980}
-  Player: {fileID: 0}
+  SlimeCollider: {fileID: 5941031085044498980}
+  SlimeGameObject: {fileID: 5941031085044499005}
+  PlayerHitbox: {fileID: 0}
+  PlayerCollider: {fileID: 0}
+  PlayerGameObject: {fileID: 0}

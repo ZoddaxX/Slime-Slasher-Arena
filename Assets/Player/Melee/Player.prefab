@@ -247,7 +247,7 @@ MonoBehaviour:
     m_Bits: 8
   velSlide: 20
   slideTime: 0.2
-  slideCooldown: 0
+  slideCooldown: 1
   facingRight: 1
   isSliding: 0
   alturaKnockback: 3

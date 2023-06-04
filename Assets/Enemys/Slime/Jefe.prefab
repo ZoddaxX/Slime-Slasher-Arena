@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 771472226}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.61, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 5941031085044498980}
   - component: {fileID: 5941031085044498981}
   - component: {fileID: 1307967226}
+  - component: {fileID: 77052415}
   m_Layer: 9
   m_Name: Jefe
   m_TagString: Enemigo
@@ -185,10 +186,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  agro_Range: 15
-  velHorizontal: 13
-  velSalto: 25
-  jumpCooldown: 1
+  agro_Range: 40
+  velHorizontal: 25
+  velSalto: 30
+  jumpCooldown: 2
   Plataform:
     serializedVersion: 2
     m_Bits: 8
@@ -252,5 +253,31 @@ MonoBehaviour:
   "da\xF1oGolpe": 10
   tiempoEntreAtaque: 0.5
   tiempoSiguienteAtaque: 1
-  Slime: {fileID: 5941031085044498980}
-  Player: {fileID: 0}
+  SlimeCollider: {fileID: 5941031085044498980}
+  SlimeGameObject: {fileID: 5941031085044499005}
+  PlayerHitbox: {fileID: 0}
+  PlayerCollider: {fileID: 0}
+  PlayerGameObject: {fileID: 0}
+--- !u!114 &77052415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5941031085044499005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8db80cc75e0590d44bc8a953a9633e38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blobPrefab: {fileID: 4800639435888325816, guid: 699fd675f2dc7b84b8d84b0035a6c19a, type: 3}
+  blobSpawnPoint: {fileID: 771472227}
+  blobSpeed: 20
+  blobArcHeight: 20
+  blobSpacing: 10
+  blobLifetime: 3
+  numberOfBlobs: 8
+  blobDamage: 5
+  attackCd: 10
+  attackTimer: 5
+  attackWaitTime: 3
