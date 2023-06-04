@@ -16,7 +16,7 @@ public class Player_Stats : MonoBehaviour
   {
     health = maxHp;
   }
-  public void TomarDaño(float damage)
+  public void TomarDano(float damage)
   {
     health -= damage;
     slider.transform.GetComponent<HpBarScript>().setHealth(health,maxHp);

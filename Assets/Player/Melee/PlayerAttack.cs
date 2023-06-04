@@ -9,8 +9,8 @@ public class PlayerAttack : MonoBehaviour
 
   [SerializeField] private Transform controladorGolpe;
   [SerializeField] private float radioGolpe;
-  [SerializeField] private float dañoGolpeLigero;
-  [SerializeField] private float dañoGolpePesado;
+  [SerializeField] private float danoGolpeLigero;
+  [SerializeField] private float danoGolpePesado;
   [SerializeField] private float tiempoEntreAtaqueLigero;
   [SerializeField] private float tiempoEntreAtaquePesado;
   
@@ -62,7 +62,7 @@ public class PlayerAttack : MonoBehaviour
       foreach (Collider2D colisionador in objetos)
       {
         if (colisionador.CompareTag("Enemigo")){
-          colisionador.transform.GetComponent<Slime_Stats>().TomarDaño(dañoGolpeLigero, 1);
+          colisionador.transform.GetComponent<Slime_Stats>().TomarDano(danoGolpeLigero, 1);
         }
       }
     }
@@ -73,7 +73,7 @@ public class PlayerAttack : MonoBehaviour
       foreach (Collider2D colisionador in objetos)
       {
         if (colisionador.CompareTag("Enemigo")){
-          colisionador.transform.GetComponent<Slime_Stats>().TomarDaño(dañoGolpePesado, heavyKnockbackMultiplyer);
+          colisionador.transform.GetComponent<Slime_Stats>().TomarDano(danoGolpePesado, heavyKnockbackMultiplyer);
         }
       }
     }

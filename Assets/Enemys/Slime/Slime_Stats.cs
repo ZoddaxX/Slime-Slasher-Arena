@@ -15,7 +15,7 @@ public class Slime_Stats : MonoBehaviour
         //Load rigidbody
         rb = GetComponent<Rigidbody2D>();
     }
-    public void TomarDaño(float damage, float multiplier)
+    public void TomarDano(float damage, float multiplier)
   {
     health -= damage;
 
