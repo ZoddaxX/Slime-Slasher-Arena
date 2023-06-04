@@ -6,10 +6,6 @@ public class blobAttack : MonoBehaviour
 {
     public int damage = 10;
 
-    private void Update()
-    {
-
-    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Jugador"))
@@ -22,7 +18,7 @@ public class blobAttack : MonoBehaviour
 
             Destroy(gameObject); // Destroy the bullet projectile
         }
-        else if (collision.CompareTag("Terrain"))
+        else if (collision.CompareTag("Ground"))
         {
             Destroy(gameObject); // Destroy the bullet projectile
         }

@@ -311,9 +311,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c58d485acd120ccc1836ccedeeb8ba09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 309527621758031976, guid: 267f5c2837d20ef4c97481c26106a5f5, type: 3}
+  slider: {fileID: 0}
   alive: 1
-  gameOverPanel: {fileID: 1277551843494296787, guid: 5521d899b2ea83c429a83f3b6b7a5219, type: 3}
+  gameOverPanel: {fileID: 0}
   maxHp: 50
   health: 50
 --- !u!1 &8204650091785290054
