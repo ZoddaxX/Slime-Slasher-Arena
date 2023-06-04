@@ -1688,7 +1688,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce022fb0636bbb447907f4ed1febc334, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heavyKnockbackMultiplier: 0
+  heavyKnockbackMultiplier: 2
   attack: {fileID: 534078197}
   playerController: {fileID: 1525404761}
   Player: {fileID: 1525404760}
@@ -1826,6 +1826,10 @@ PrefabInstance:
       propertyPath: slider
       value: 
       objectReference: {fileID: 1702905693}
+    - target: {fileID: 4691168060286217773, guid: 97a39a6cb7dab5043960ad89b34927e1, type: 3}
+      propertyPath: attackCenter
+      value: 
+      objectReference: {fileID: 1403969943}
     - target: {fileID: 4691168060286217773, guid: 97a39a6cb7dab5043960ad89b34927e1, type: 3}
       propertyPath: gameOverPanel
       value: 
