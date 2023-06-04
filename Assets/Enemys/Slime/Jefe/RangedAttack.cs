@@ -83,11 +83,11 @@ public class RangedAttack : MonoBehaviour
 
     private void PauseSlimeMovement()
     {
-        gameObject.GetComponent<AI_SlimeMelee>().enabled = false;
+        gameObject.GetComponent<AI_SlimeBoss>().enabled = false;
     }
 
     private void ResumeSlimeMovement()
     {
-        gameObject.GetComponent<AI_SlimeMelee>().enabled = true;
+        gameObject.GetComponent<AI_SlimeBoss>().enabled = true;
     }
 }
