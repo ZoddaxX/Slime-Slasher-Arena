@@ -1928,6 +1928,10 @@ PrefabInstance:
       propertyPath: PlayerGameObject
       value: 
       objectReference: {fileID: 1525404760}
+    - target: {fileID: 3373012219903042415, guid: 167f4c2f829fbc542b553b3c81f0f8e2, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1525404760}
     - target: {fileID: 5941031085044498981, guid: 167f4c2f829fbc542b553b3c81f0f8e2, type: 3}
       propertyPath: jugador
       value: 
@@ -1976,10 +1980,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5941031085044498983, guid: 167f4c2f829fbc542b553b3c81f0f8e2, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 1525404760}
     - target: {fileID: 5941031085044499005, guid: 167f4c2f829fbc542b553b3c81f0f8e2, type: 3}
       propertyPath: m_Name
       value: Jefe
