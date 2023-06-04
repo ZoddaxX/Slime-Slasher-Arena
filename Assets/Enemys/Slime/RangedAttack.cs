@@ -11,18 +11,37 @@ public class RangedAttack : MonoBehaviour
     public float blobSpacing = 0.5f;
     public float blobLifetime = 5f;
     public int numberOfBlobs = 4;
-    public int blobDamage = 5;
+    public int blobDamage = 10;
+    public float attackCd = 5;
+    public float attackTimer = 0;
+    public float attackWaitTime = 3;
 
     private GameObject player;
+    private bool isAttacking = false;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.FindGameObjectWithTag("Jugador");
     }
 
-    public void PerformRangedAttack()
+    private void Update()
     {
+        attackTimer += Time.deltaTime;
+        if (attackTimer > attackCd && !isAttacking)
+        {
+            StartCoroutine(PerformAttackCoroutine());
+            attackTimer = 0f;
+        }
+
+    }
+
+    private System.Collections.IEnumerator PerformAttackCoroutine()
+    {
+        isAttacking = true;
+        PauseSlimeMovement();
+
+        yield return new WaitForSeconds(attackWaitTime);
+
         Vector2 playerPosition = player.transform.position;
 
         // Calculate the angle between the slime and the player
@@ -40,12 +59,15 @@ public class RangedAttack : MonoBehaviour
             // Calculate the direction vector for the current blob
             Vector2 currentDirection = Quaternion.Euler(0f, 0f, currentAngle) * Vector2.right;
 
+            // Calculate the target position with the offset
+            Vector2 targetPosition = playerPosition + (currentDirection.normalized * blobSpacing);
+
             // Instantiate the blob projectile
             GameObject blob = Instantiate(blobPrefab, blobSpawnPoint.position, Quaternion.identity);
 
-            // Set the blob's initial speed and direction
+            // Set the blob's initial speed and direction towards the target position
             Rigidbody2D rb = blob.GetComponent<Rigidbody2D>();
-            rb.velocity = currentDirection.normalized * blobSpeed;
+            rb.velocity = (targetPosition - (Vector2)blobSpawnPoint.position).normalized * blobSpeed;
 
             // Set the blob's arc trajectory
             Vector3 blobArc = new Vector3(currentDirection.x, currentDirection.y + blobArcHeight, 0f);
@@ -54,21 +76,18 @@ public class RangedAttack : MonoBehaviour
             // Set the blob's lifetime
             Destroy(blob, blobLifetime);
         }
+
+        ResumeSlimeMovement();
+        isAttacking = false;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void PauseSlimeMovement()
     {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            // Damage the player if hit by a blob
-            Player_Stats playerStats = collision.gameObject.GetComponent<Player_Stats>();
-            if (playerStats != null)
-            {
-                playerStats.TomarDaño(blobDamage);
-            }
-        }
+        gameObject.GetComponent<AI_SlimeMelee>().enabled = false;
+    }
 
-        // Destroy the projectile on collision with a surface or the player
-        Destroy(gameObject);
+    private void ResumeSlimeMovement()
+    {
+        gameObject.GetComponent<AI_SlimeMelee>().enabled = true;
     }
 }

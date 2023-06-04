@@ -8,6 +8,8 @@ TagManager:
   - Enemigo
   - Jugador
   - HitBox
+  - BlobProjectile
+  - Terrain
   layers:
   - Default
   - TransparentFX
