@@ -27,7 +27,6 @@ public class AI_SlimeMelee : MonoBehaviour
     void Start()
     {
         sentido = true;
-        Debug.Log("INICIO");
     }
 
     // Update is called once per frame
@@ -105,7 +104,6 @@ public class AI_SlimeMelee : MonoBehaviour
         {
             slimeRB.AddForce(new Vector2(-velHorizontal, velSalto), ForceMode2D.Impulse);
         }
-        Debug.Log("SLIME SALTANDO :D");
     }
 
     void slime_agro()

@@ -7,6 +7,7 @@ public class Player_Stats : MonoBehaviour
 {
   public Slider slider;
   public bool alive = true;
+  public GameObject attackCenter;
   public GameObject gameOverPanel;
 
   [SerializeField] private float maxHp;
@@ -35,7 +36,7 @@ public class Player_Stats : MonoBehaviour
   private void Death(bool alive)
   {
     alive = false;
-    gameObject.GetComponent<PlayerAttack>().enabled = false;
+    attackCenter.GetComponent<PlayerAttack>().enabled = false;
     gameObject.GetComponent<PlayerController>().enabled = false;
     gameOverPanel.SetActive(true);
     Debug.Log("Game Over.");

@@ -6,6 +6,8 @@ public class PlayerAttack : MonoBehaviour
 {
     public int heavyKnockbackMultiplier;
     public GameObject attack;
+    public PlayerController playerController;
+    public GameObject Player;
 
     [SerializeField] private Transform controladorGolpe;
     [SerializeField] private float radioGolpe;
@@ -14,13 +16,12 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private float tiempoEntreAtaqueLigero;
     [SerializeField] private float tiempoEntreAtaquePesado;
 
-    public PlayerController playerController;
-    public GameObject Player;
+    
     private float tiempoSiguienteAtaque;
     private bool flag = true;
-
     private Camera mainCam;
     private Vector3 mousePos;
+    private float turn;
 
     private void Start()
     {
@@ -61,11 +62,13 @@ public class PlayerAttack : MonoBehaviour
             flag = false;
         }
 
+        float orientation = Mathf.Sign(Player.transform.localScale.x);
+
         mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
 
         Vector3 rotation = mousePos - transform.position;
 
-        float rotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
+        float rotZ = Mathf.Atan2(rotation.y * orientation, rotation.x * orientation) * Mathf.Rad2Deg;
 
         transform.rotation = Quaternion.Euler(0, 0, rotZ);
 

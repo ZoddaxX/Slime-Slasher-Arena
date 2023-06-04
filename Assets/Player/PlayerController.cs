@@ -170,12 +170,10 @@ public class PlayerController : MonoBehaviour
     }
 
     public void PlayerTrigger(Collider2D enemigo){
-        Debug.Log("RAR");
         if (enemigo.gameObject.CompareTag("Enemigo") && canKnockback)
         {
             canKnockback = false;
             onKnockback = true;
-            Debug.Log("SAS");
             Vector2 direccion = transform.position - enemigo.gameObject.transform.position;
             direccion.Normalize();
             direccion += alturaKnockback * Vector2.up;
