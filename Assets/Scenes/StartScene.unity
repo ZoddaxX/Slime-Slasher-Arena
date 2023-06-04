@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!4 &37568001 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8204650091785290053, guid: 97a39a6cb7dab5043960ad89b34927e1, type: 3}
+  m_PrefabInstance: {fileID: 1583703491}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &97641990
 GameObject:
   m_ObjectHideFlags: 0
@@ -1654,6 +1659,33 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 917523109939f0d47a6b07612154343e, type: 3}
+--- !u!1 &1403969943 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4297653119888563181, guid: 97a39a6cb7dab5043960ad89b34927e1, type: 3}
+  m_PrefabInstance: {fileID: 1583703491}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1403969945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403969943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce022fb0636bbb447907f4ed1febc334, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heavyKnockbackMultiplier: 0
+  attack: {fileID: 534078197}
+  controladorGolpe: {fileID: 37568001}
+  radioGolpe: 1.5
+  danoGolpeLigero: 1
+  danoGolpePesado: 1
+  tiempoEntreAtaqueLigero: 0.2
+  tiempoEntreAtaquePesado: 0.8
+  playerController: {fileID: 1525404761}
+  Player: {fileID: 1525404760}
 --- !u!1001 &1503160185
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1736,6 +1768,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8204650090437841379, guid: 97a39a6cb7dab5043960ad89b34927e1, type: 3}
   m_PrefabInstance: {fileID: 1583703491}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1525404761 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8204650090437841390, guid: 97a39a6cb7dab5043960ad89b34927e1, type: 3}
+  m_PrefabInstance: {fileID: 1583703491}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1525404760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d23ec80e69cb82c4d95c77f65368214f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1583703491
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1847,7 +1890,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5956834635678011609, guid: 97a39a6cb7dab5043960ad89b34927e1, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 97a39a6cb7dab5043960ad89b34927e1, type: 3}
 --- !u!1 &1684603775
 GameObject:
