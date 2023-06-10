@@ -10,6 +10,8 @@ TagManager:
   - HitBox
   - BlobProjectile
   - Terrain
+  - Jefe
+  - Projectile
   layers:
   - Default
   - TransparentFX

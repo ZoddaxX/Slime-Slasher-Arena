@@ -10,8 +10,12 @@ public class AI_SlimeBoss : MonoBehaviour
     public int velSalto;
     public float jumpCooldown;
     public LayerMask Plataform;
+    public float RageAttackCooldown;
+    public float RageAttackVelocity;
+    public float RageAttackDuration;
+    public RangedAttack rangedAttack;
+    public Boss_Stats bossStats;
 
-    Slime_Stats slimeStats;
     private float lastJump = 0;
     private Rigidbody2D slimeRB;
     private bool sentido;
@@ -22,12 +26,13 @@ public class AI_SlimeBoss : MonoBehaviour
     private double distancia;
     private bool canJump = true;
     private float timeOnGround = 0;
+    private float porcentajeVida;
+    private bool onRage;
 
     // Start is called before the first frame update
     void Start()
     {
         sentido = true;
-        Debug.Log("INICIO");
     }
 
     // Update is called once per frame
@@ -38,17 +43,22 @@ public class AI_SlimeBoss : MonoBehaviour
         slime_x = transform.position.x;
         slime_y = transform.position.y;
         slimeRB = GetComponent<Rigidbody2D>();
-        slimeStats = GetComponent<Slime_Stats>();
+        bossStats = GetComponent<Boss_Stats>();
+        rangedAttack = GetComponent<RangedAttack>();
 
         distancia = Mathf.Pow(Mathf.Pow(slime_x - player_x, 2) + Mathf.Pow(slime_y - player_y, 2),0.5f);
         
-        if (!slimeStats.alive)
+        if (!bossStats.alive)
         {
             return;
         }
 
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.7f + Mathf.Abs(1 - gameObject.transform.localScale.y), Plataform);
-        if (hit.collider != null)
+        PolygonCollider2D slimeCollider = GetComponent<PolygonCollider2D>();
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, slimeCollider.bounds.size.y / 2 + 0.1f, Plataform);
+        RaycastHit2D hitleft = Physics2D.Raycast(transform.position - new Vector3(slimeCollider.bounds.size.x / 2, 0, 0), Vector2.down, slimeCollider.bounds.size.y / 2 + 0.1f, Plataform);
+        RaycastHit2D hitright = Physics2D.Raycast(transform.position + new Vector3(slimeCollider.bounds.size.x / 2, 0, 0), Vector2.down, slimeCollider.bounds.size.y / 2 + 0.1f, Plataform);
+        Debug.DrawRay(transform.position - new Vector3(slimeCollider.bounds.size.x / 2, 0, 0), Vector2.down * (slimeCollider.bounds.size.y / 2) + new Vector2(0,-0.1f), Color.red);
+        if (hit.collider != null && hitleft.collider != null && hitright.collider != null)
         {
             canJump = true;
             timeOnGround += Time.deltaTime;
@@ -105,7 +115,6 @@ public class AI_SlimeBoss : MonoBehaviour
         {
             slimeRB.AddForce(new Vector2(-velHorizontal, velSalto), ForceMode2D.Impulse);
         }
-        Debug.Log("SLIME SALTANDO :D");
     }
 
     void slime_agro()
@@ -119,5 +128,32 @@ public class AI_SlimeBoss : MonoBehaviour
         {
             jump(true, velHorizontal, velSalto);
         }
+    }
+
+    void rage_attack()
+    {
+        slimeRB.gravityScale = 0;
+        int sentido = Random.Range(0,2);
+        float valor = Random.Range(0f,1f);
+
+        if (sentido == 1)
+        {
+            slimeRB.AddForce(new Vector2(RageAttackVelocity, RageAttackVelocity), ForceMode2D.Impulse);
+        }
+        else
+        {
+            slimeRB.AddForce(new Vector2(RageAttackVelocity, RageAttackVelocity), ForceMode2D.Impulse);
+        }
+
+        StartCoroutine(inRage());
+    }
+
+    IEnumerator inRage(){
+        yield return(new WaitForSeconds(RageAttackDuration));
+        while (!canJump){
+            yield return 0;
+        }
+
+        slimeRB.gravityScale = 1;  
     }
 }

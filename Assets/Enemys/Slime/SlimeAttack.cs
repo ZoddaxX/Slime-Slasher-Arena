@@ -24,11 +24,13 @@ public class SlimeAttack : MonoBehaviour
       tiempoSiguienteAtaque -= Time.deltaTime;
     }
 
-    if (SlimeCollider.IsTouching(PlayerHitbox)){
+    /*if (SlimeCollider.IsTouching(PlayerHitbox)){
       Debug.Log("player recibe daño");
       Golpe();
       tiempoSiguienteAtaque = tiempoEntreAtaque;
     }
+    */
+
     /*
     if (tiempoSiguienteAtaque != tiempoEntreAtaque){
       if ( (tiempoEntreAtaque - 0.3) > tiempoSiguienteAtaque) playerRender.material.SetColor("_Color", Color.red);
@@ -40,14 +42,18 @@ public class SlimeAttack : MonoBehaviour
     */
   }
 
-  private void Golpe(){
+  public float getDamage(){
+    return dañoGolpe;
+  }
+
+  /*private void Golpe(){
     var playerRender = PlayerGameObject.GetComponent<Renderer>();
     PlayerCollider.transform.GetComponent<Player_Stats>().TomarDano(dañoGolpe);
     if ( (tiempoSiguienteAtaque) > (tiempoEntreAtaque - 0.3f)){
       playerRender.material.SetColor("_Color", Color.red);
     }
     playerRender.material.SetColor("_Color", Color.white);
-  }
+  }*/
 
   /*
   void OnDrawGizmos(){

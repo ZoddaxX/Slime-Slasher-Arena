@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    public int heavyKnockbackMultiplier;
+    public float heavyKnockbackMultiplier;
     public GameObject attack;
     public PlayerController playerController;
     public GameObject Player;
@@ -16,7 +16,6 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private float tiempoEntreAtaqueLigero;
     [SerializeField] private float tiempoEntreAtaquePesado;
 
-    
     private float tiempoSiguienteAtaque;
     private bool flag = true;
     private Camera mainCam;
@@ -29,62 +28,62 @@ public class PlayerAttack : MonoBehaviour
         playerController = Player.GetComponent<PlayerController>();
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
     }
-    // Update is called once per frame
+        // Update is called once per frame
     void Update()
     {
         //No atacar cuando esta en slide
-        if (playerController.isSliding)
+        if(playerController.isSliding)
         {
-            return;
+        return;
         }
         //
         if (tiempoSiguienteAtaque > 0)
-        {
-            flag = true;
-            tiempoSiguienteAtaque -= Time.deltaTime;
+        { 
+        flag = true;
+        tiempoSiguienteAtaque -= Time.deltaTime;
         }
         //Ataque ligero
-        if ((Input.GetKey("x") || Input.GetMouseButtonDown(0)) && tiempoSiguienteAtaque <= 0 && flag) // GetMouseButtonDown(0)
+        if ( (Input.GetKey("x") || Input.GetMouseButtonDown(0)) && tiempoSiguienteAtaque <= 0 && flag) // GetMouseButtonDown(0)
         {
-            GolpeLigero();
-            StartCoroutine(DrawAttack(0.1f));
-            Debug.Log("atk ligero");
-            tiempoSiguienteAtaque = tiempoEntreAtaqueLigero;
-            flag = false;
+        GolpeLigero();
+        StartCoroutine(DrawAttack(0.1f));
+        Debug.Log("atk ligero");
+        tiempoSiguienteAtaque = tiempoEntreAtaqueLigero;
+        flag = false;
         }
         //Ataque pesado
-        if ((Input.GetKey("c") || Input.GetMouseButtonDown(1)) && tiempoSiguienteAtaque <= 0 && flag)
-        { // GetMouseButtonDown(1)
-            GolpePesado();
-            StartCoroutine(DrawAttack(0.2f));
-            Debug.Log("atk fuerte");
-            tiempoSiguienteAtaque = tiempoEntreAtaquePesado;
-            flag = false;
+        if ((Input.GetKey("c") || Input.GetMouseButtonDown(1))&& tiempoSiguienteAtaque <= 0 && flag){ // GetMouseButtonDown(1)
+        GolpePesado();
+        StartCoroutine(DrawAttack(0.2f));
+        Debug.Log("atk fuerte");
+        tiempoSiguienteAtaque = tiempoEntreAtaquePesado;
+        flag = false;
         }
 
-        float orientation = Mathf.Sign(Player.transform.localScale.x);
+    float orientation = Mathf.Sign(Player.transform.localScale.x);
 
-        mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
+    mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
 
-        Vector3 rotation = mousePos - transform.position;
+    Vector3 rotation = mousePos - transform.position;
 
-        float rotZ = Mathf.Atan2(rotation.y * orientation, rotation.x * orientation) * Mathf.Rad2Deg;
+    float rotZ = Mathf.Atan2(rotation.y * orientation, rotation.x * orientation) * Mathf.Rad2Deg;
 
-        transform.rotation = Quaternion.Euler(0, 0, rotZ);
+    transform.rotation = Quaternion.Euler(0, 0, rotZ);
 
-    }
+  }
 
-    private void GolpeLigero()
-    {
-        Collider2D[] objetos = Physics2D.OverlapCircleAll(controladorGolpe.position, radioGolpe);
+    private void GolpeLigero(){
+      Collider2D[] objetos = Physics2D.OverlapCircleAll(controladorGolpe.position, radioGolpe);
 
-        foreach (Collider2D colisionador in objetos)
-        {
-            if (colisionador.CompareTag("Enemigo"))
-            {
-                colisionador.transform.GetComponent<Slime_Stats>().TomarDano(danoGolpeLigero, 1);
-            }
+      foreach (Collider2D colisionador in objetos)
+      {
+        if (colisionador.CompareTag("Enemigo")){
+          colisionador.transform.GetComponent<Slime_Stats>().TomarDano(danoGolpeLigero, 1);
         }
+        else if (colisionador.CompareTag("Jefe")){
+          colisionador.transform.GetComponent<Boss_Stats>().TomarDano(danoGolpeLigero, 1);
+        }
+      }
     }
 
     private void GolpePesado()
@@ -97,8 +96,12 @@ public class PlayerAttack : MonoBehaviour
             {
                 colisionador.transform.GetComponent<Slime_Stats>().TomarDano(danoGolpePesado, heavyKnockbackMultiplier);
             }
+            else if (colisionador.CompareTag("Jefe")){
+                colisionador.transform.GetComponent<Boss_Stats>().TomarDano(danoGolpePesado, heavyKnockbackMultiplier);
+            }
         }
-    }
+      }
+    
     IEnumerator DrawAttack(float timer)
     {
         attack.SetActive(true);
@@ -112,5 +115,4 @@ public class PlayerAttack : MonoBehaviour
 
         Gizmos.DrawWireSphere(controladorGolpe.position, radioGolpe);
     }
-
 }

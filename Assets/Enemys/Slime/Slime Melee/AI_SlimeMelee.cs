@@ -46,8 +46,12 @@ public class AI_SlimeMelee : MonoBehaviour
             return;
         }
 
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.7f + Mathf.Abs(1 - gameObject.transform.localScale.y), Plataform);
-        if (hit.collider != null)
+        PolygonCollider2D slimeCollider = GetComponent<PolygonCollider2D>();
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, slimeCollider.bounds.size.y / 2 + 0.1f, Plataform);
+        RaycastHit2D hitleft = Physics2D.Raycast(transform.position - new Vector3(slimeCollider.bounds.size.x / 2, 0, 0), Vector2.down, slimeCollider.bounds.size.y / 2 + 0.1f, Plataform);
+        RaycastHit2D hitright = Physics2D.Raycast(transform.position + new Vector3(slimeCollider.bounds.size.x / 2, 0, 0), Vector2.down, slimeCollider.bounds.size.y / 2 + 0.1f, Plataform);
+        Debug.DrawRay(transform.position - new Vector3(slimeCollider.bounds.size.x / 2, 0, 0), Vector2.down * slimeCollider.bounds.size.y / 2 + new Vector2(0, -0.1f), Color.red);
+        if (hit.collider != null || hitleft.collider != null || hitright.collider != null)
         {
             canJump = true;
             timeOnGround += Time.deltaTime;

@@ -8,6 +8,7 @@ public class Boss_Stats : MonoBehaviour
   public bool alive = true;
   public float fuerzaKnockback;
   public float alturaKnockback;
+  public RangedAttack rangedAttack;
   [SerializeField] private float health = 10;
   private Rigidbody2D rb;
   private float healthPercentage;
@@ -19,12 +20,18 @@ public class Boss_Stats : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         healthPercentage = 1;
         initialHealth = health;
+        rangedAttack = GetComponent<RangedAttack>();
     }
-    public void TomarDaño(float damage, float multiplier)
+    public void TomarDano(float damage, float multiplier)
   {
     health -= damage;
     healthPercentage = health * 100 / initialHealth;
-
+    
+    if (healthPercentage <= 40)
+    {
+      Debug.Log("TOY ENOJAO >:D");
+      rangedAttack.rageMode();
+    }
     if (health <= 0)
     {
       Death(rb);
@@ -32,6 +39,7 @@ public class Boss_Stats : MonoBehaviour
     } else {
       Debug.Log("Auchis");
       Debug.Log("SAS");
+      Debug.Log(healthPercentage);
       Vector2 direccion = transform.position - jugador.position;
       direccion.Normalize();
       direccion += alturaKnockback * Vector2.up;

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2559556911337630144}
   m_Layer: 0
   m_Name: blob
-  m_TagString: BlobProjectile
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

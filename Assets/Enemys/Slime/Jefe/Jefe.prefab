@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 5941031085044498979}
   - component: {fileID: 5941031085044498980}
   - component: {fileID: 3373012219903042415}
-  - component: {fileID: 5941031085044498981}
+  - component: {fileID: 491243974885270559}
   - component: {fileID: 1307967226}
   - component: {fileID: 77052415}
   m_Layer: 9
@@ -219,7 +219,7 @@ MonoBehaviour:
   Plataform:
     serializedVersion: 2
     m_Bits: 8
---- !u!114 &5941031085044498981
+--- !u!114 &491243974885270559
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -228,10 +228,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5941031085044499005}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1fcb023f43451048b5cd45aa413fba5, type: 3}
+  m_Script: {fileID: 11500000, guid: 88c22696410d78840a196a66192d980e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jugador: {fileID: 0}
+  jugador: {fileID: 8204650090437841391, guid: 97a39a6cb7dab5043960ad89b34927e1, type: 3}
   alive: 1
   fuerzaKnockback: 0
   alturaKnockback: 0

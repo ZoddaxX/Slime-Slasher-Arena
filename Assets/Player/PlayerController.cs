@@ -149,14 +149,8 @@ public class PlayerController : MonoBehaviour
 
 
     IEnumerator invisCooldown(){
-        float tiempo = 0;
-        while (tiempo <= invisTimer)
-            {
-                tiempo += Time.deltaTime;
-                yield return 0;
-            }
-            canKnockback = true; 
-            yield return 0;
+        yield return new WaitForSeconds(invisTimer);
+        canKnockback = true; 
     }
 
     IEnumerator isOnKnockback(){
@@ -169,15 +163,17 @@ public class PlayerController : MonoBehaviour
         yield return 0;
     }
 
-    public void PlayerTrigger(Collider2D enemigo){
-        if (enemigo.gameObject.CompareTag("Enemigo") && canKnockback)
+    public void PlayerTrigger(Collider2D enemigo, float daño){
+        if ((enemigo.gameObject.CompareTag("Enemigo") || enemigo.gameObject.CompareTag("Jefe")) && canKnockback)
         {
             canKnockback = false;
             onKnockback = true;
             Vector2 direccion = transform.position - enemigo.gameObject.transform.position;
             direccion.Normalize();
             direccion += alturaKnockback * Vector2.up;
+            rigidBody.AddForce(new Vector2(rigidBody.velocity.x * -1, rigidBody.velocity.y * -1), ForceMode2D.Impulse);
             rigidBody.AddForce(direccion * fuerzaKnockback, ForceMode2D.Impulse);
+            GetComponent<Player_Stats>().TomarDano(daño);
 
             StartCoroutine(invisCooldown());
             StartCoroutine(isOnKnockback());

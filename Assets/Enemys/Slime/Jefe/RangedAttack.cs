@@ -15,19 +15,36 @@ public class RangedAttack : MonoBehaviour
     public float attackCd = 5;
     public float attackTimer = 0;
     public float attackWaitTime = 3;
+    public float rageAttackWaitTime = 1.5f;
+    public float rageAttackDuration = 4;
+    public float RageAttackVelocity = 10;
 
     private GameObject player;
     private bool isAttacking = false;
+    private bool isEnraged = false;
+    private bool isRage = true;
+    private Rigidbody2D slimeRB;
+
 
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Jugador");
+        slimeRB = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
     {
         attackTimer += Time.deltaTime;
-        if (attackTimer > attackCd && !isAttacking)
+        if (attackTimer > attackCd && !isAttacking && !isEnraged)
+        {
+            StartCoroutine(PerformAttackCoroutine());
+            attackTimer = 0f;
+        }
+        else if (attackTimer > attackCd && !isAttacking && isRage)
+        {
+            StartCoroutine(PerformRageAttackCoroutine());
+        }
+        else if (attackTimer > attackCd && !isAttacking && !isRage)
         {
             StartCoroutine(PerformAttackCoroutine());
             attackTimer = 0f;
@@ -79,6 +96,35 @@ public class RangedAttack : MonoBehaviour
 
         ResumeSlimeMovement();
         isAttacking = false;
+        if (isEnraged) isRage = true;
+    }
+
+    private IEnumerator PerformRageAttackCoroutine(){
+        isAttacking = true;
+        PauseSlimeMovement();
+
+        yield return new WaitForSeconds(rageAttackWaitTime);
+
+        slimeRB.gravityScale = 0;
+        int sentido = Random.Range(0,2);
+        float valor = Random.Range(0f,1f);
+
+        if (sentido == 1)
+        {
+            slimeRB.AddForce(new Vector2(RageAttackVelocity * valor, RageAttackVelocity), ForceMode2D.Impulse);
+        }
+        else
+        {
+            slimeRB.AddForce(new Vector2(RageAttackVelocity * valor * -1, RageAttackVelocity), ForceMode2D.Impulse);
+        }
+
+        yield return new WaitForSeconds(rageAttackDuration);
+
+        slimeRB.gravityScale = 1;
+        ResumeSlimeMovement();
+        isAttacking = false;
+        isRage = false;
+
     }
 
     private void PauseSlimeMovement()
@@ -89,5 +135,9 @@ public class RangedAttack : MonoBehaviour
     private void ResumeSlimeMovement()
     {
         gameObject.GetComponent<AI_SlimeBoss>().enabled = true;
+    }
+
+    public void rageMode(){
+        isEnraged = true;
     }
 }
