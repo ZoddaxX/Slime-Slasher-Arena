@@ -39,6 +39,8 @@ public class PlayerController : MonoBehaviour
         slideTimerCool = 10f;
         onKnockback = false;
         canKnockback = true;
+        PolygonCollider2D playerCollider = GetComponent<PolygonCollider2D>();
+        Debug.Log(("El ancho es", playerCollider.bounds.size.x, "y el largo es de", playerCollider.bounds.size.y));
 
     }
 
