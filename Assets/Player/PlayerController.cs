@@ -166,7 +166,7 @@ public class PlayerController : MonoBehaviour
     }
 
     public void PlayerTrigger(Collider2D enemigo, float daño){
-        if ((enemigo.gameObject.CompareTag("Enemigo") || enemigo.gameObject.CompareTag("Jefe")) && canKnockback)
+        if ((enemigo.gameObject.CompareTag("Enemigo") || enemigo.gameObject.CompareTag("Jefe") || enemigo.gameObject.CompareTag("Projectile"))  && canKnockback)
         {
             canKnockback = false;
             onKnockback = true;
