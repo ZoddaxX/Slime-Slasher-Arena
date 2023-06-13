@@ -2412,6 +2412,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1525404760}
     - target: {fileID: 5941031085044498981, guid: 917523109939f0d47a6b07612154343e, type: 3}
+      propertyPath: health
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5941031085044498981, guid: 917523109939f0d47a6b07612154343e, type: 3}
       propertyPath: jugador
       value: 
       objectReference: {fileID: 1122238024}
