@@ -183,7 +183,7 @@ Transform:
   m_GameObject: {fileID: 8204650090437841379}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.55, y: -1.43, z: 0}
-  m_LocalScale: {x: 1, y: 2, z: 1}
+  m_LocalScale: {x: 2, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7808737859468406337}
@@ -305,7 +305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d23ec80e69cb82c4d95c77f65368214f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanciaRayo: 1.25
+  distanciaRayo: 2.25
   velHorizontalJugador: 5
   velVerticalJugador: 27
   velHorizontalMax: 14
@@ -362,10 +362,10 @@ MonoBehaviour:
   alive: 1
   attackCenter: {fileID: 4297653119888563181}
   gameOverPanel: {fileID: 0}
-  maxHp: 500
-  health: 500
+  maxHp: 100
+  health: 100
   DmgCooldownTime: 1
-  DmgCooldown: 0
+  DmgCooldown: 0.2
 --- !u!1 &8204650091785290054
 GameObject:
   m_ObjectHideFlags: 0

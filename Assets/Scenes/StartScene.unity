@@ -1034,8 +1034,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 581481582}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 72.6, y: -17, z: 1}
-  m_LocalScale: {x: 25, y: 20.157024, z: 1}
+  m_LocalPosition: {x: 56.5, y: -20, z: 1}
+  m_LocalScale: {x: 20, y: 20, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1951,8 +1951,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1317626018}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.9, y: -17, z: 1}
-  m_LocalScale: {x: 25, y: 20.157024, z: 1}
+  m_LocalPosition: {x: -7.3699, y: -20, z: 1}
+  m_LocalScale: {x: 20, y: 20, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -2074,14 +2074,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4691168060286217773, guid: 97a39a6cb7dab5043960ad89b34927e1, type: 3}
-      propertyPath: slider
-      value: 
-      objectReference: {fileID: 1702905693}
-    - target: {fileID: 4691168060286217773, guid: 97a39a6cb7dab5043960ad89b34927e1, type: 3}
-      propertyPath: gameOverPanel
-      value: 
-      objectReference: {fileID: 1695350371}
     - target: {fileID: 8204650090437841379, guid: 97a39a6cb7dab5043960ad89b34927e1, type: 3}
       propertyPath: m_Name
       value: Player
@@ -2243,22 +2235,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1695350371 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5319203796066377353, guid: 6eb3a4b02e7eb604cb13803441b5aeae, type: 3}
-  m_PrefabInstance: {fileID: 1933245567}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1702905693 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2462865091297780154, guid: 6eb3a4b02e7eb604cb13803441b5aeae, type: 3}
-  m_PrefabInstance: {fileID: 1933245567}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1731248560 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5807334886987679564, guid: 1407c6ee9a1397244ab885a8a281dd04, type: 3}

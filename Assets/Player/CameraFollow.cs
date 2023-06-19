@@ -9,6 +9,10 @@ public class CameraFollow : MonoBehaviour
 
     [SerializeField] private float offset = 5;
 
+    private void Start()
+    {
+        player = GameObject.Find("Player").transform;
+    }
     // Update is called once per frame
     void Update()
     {
