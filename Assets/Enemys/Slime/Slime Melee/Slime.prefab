@@ -230,10 +230,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1fcb023f43451048b5cd45aa413fba5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jugador: {fileID: 0}
   alive: 1
   fuerzaKnockback: 3
   alturaKnockback: 3
-  jugador: {fileID: 0}
   health: 15
 --- !u!114 &1307967226
 MonoBehaviour:

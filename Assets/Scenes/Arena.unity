@@ -604,6 +604,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4725331943706812565, guid: 1407c6ee9a1397244ab885a8a281dd04, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4725331943706812565, guid: 1407c6ee9a1397244ab885a8a281dd04, type: 3}
       propertyPath: enemyAmount
       value: 1
       objectReference: {fileID: 0}
@@ -740,6 +744,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1234593391 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3688916242130969614, guid: 5499086d1eb7de54c9618b100111f2f4, type: 3}
+  m_PrefabInstance: {fileID: 1554195842}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e02a01d6c1136a449b3cee149757f1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1554195842
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -921,6 +936,40 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1277551843421650218, guid: 6eb3a4b02e7eb604cb13803441b5aeae, type: 3}
   m_PrefabInstance: {fileID: 2000957910}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1703914516 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5807334886987679564, guid: 1407c6ee9a1397244ab885a8a281dd04, type: 3}
+  m_PrefabInstance: {fileID: 933546113}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1703914520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1703914516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d4aa0b900e56ad4eb730894819168bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waves:
+  - name: SlimeWave1
+    enemy: {fileID: 5941031085044498982, guid: 917523109939f0d47a6b07612154343e, type: 3}
+    count: 3
+    rate: 1
+  - name: SlimeWave2
+    enemy: {fileID: 5941031085044498982, guid: 917523109939f0d47a6b07612154343e, type: 3}
+    count: 5
+    rate: 1
+  - name: KingSlime
+    enemy: {fileID: 5941031085044498982, guid: 167f4c2f829fbc542b553b3c81f0f8e2, type: 3}
+    count: 1
+    rate: 1
+  spawnRange: 40
+  timeBetweenWaves: 5
+  waveCountDown: 0
+  state: 2
 --- !u!1 &1868798954
 GameObject:
   m_ObjectHideFlags: 0
@@ -1028,14 +1077,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1277551843421650218, guid: 6eb3a4b02e7eb604cb13803441b5aeae, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1277551845275955214, guid: 6eb3a4b02e7eb604cb13803441b5aeae, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
+    - target: {fileID: 2084816483, guid: 6eb3a4b02e7eb604cb13803441b5aeae, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1234593391}
     - target: {fileID: 4075341757479746409, guid: 6eb3a4b02e7eb604cb13803441b5aeae, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1127,10 +1172,6 @@ PrefabInstance:
     - target: {fileID: 4446470669046005137, guid: 6eb3a4b02e7eb604cb13803441b5aeae, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5222521342216463815, guid: 6eb3a4b02e7eb604cb13803441b5aeae, type: 3}
-      propertyPath: startScene
-      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7185733611418501762, guid: 6eb3a4b02e7eb604cb13803441b5aeae, type: 3}
       propertyPath: m_Name

@@ -15,6 +15,8 @@ public class waveSpawner : MonoBehaviour
     }
     public Wave[] waves;
 
+    public float spawnRange = 40f;
+
     private int nextWave = 0;
 
     public float timeBetweenWaves = 5f;
@@ -34,8 +36,7 @@ public class waveSpawner : MonoBehaviour
         {
             if (!EnemyStillAlive())
             {
-                //new wave
-                state = SpawnState.spawning;
+                WaveCompleted();
             }
             else
             {
@@ -45,7 +46,6 @@ public class waveSpawner : MonoBehaviour
 
         if(waveCountDown <= 0)
         {
-            //waveCountDown = timeBetweenWaves;
             if (state != SpawnState.spawning)
             {
                 //codigo pa spawnear
@@ -66,7 +66,7 @@ public class waveSpawner : MonoBehaviour
         if (searchCountDown <= 0f)
         {
             searchCountDown = 1f;
-            if (GameObject.FindGameObjectWithTag("Enemigo") == null)
+            if (GameObject.FindGameObjectWithTag("Enemigo") == null && GameObject.FindGameObjectWithTag("Jefe") == null)
             {
                 return false;
             }
@@ -74,6 +74,18 @@ public class waveSpawner : MonoBehaviour
         
 
         return true;
+    }
+
+    void WaveCompleted()
+    {
+        state = SpawnState.counting;
+        waveCountDown = timeBetweenWaves;
+        nextWave++;
+        if(nextWave + 1 > waves.Length)
+        {
+            nextWave = 0;
+            Debug.Log("Oleadas completadas");
+        }
     }
     private IEnumerator SpawnWave(Wave _wave)
     {
@@ -90,7 +102,11 @@ public class waveSpawner : MonoBehaviour
     }
     void SpawnEnemy(Transform _enemy)
     {
-        Instantiate(_enemy, transform.position, transform.rotation);
+        float randomNumber = Random.Range(-spawnRange, spawnRange);
+        Vector3 spawntransform = transform.position;
+        spawntransform.x += randomNumber;
+        spawntransform.y -= 5;
+        Instantiate(_enemy, spawntransform, transform.rotation);
         Debug.Log("spawning enemy");
 
     }

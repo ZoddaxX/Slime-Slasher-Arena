@@ -33,6 +33,8 @@ public class AI_SlimeBoss : MonoBehaviour
     void Start()
     {
         sentido = true;
+        player = GameObject.Find("Player");
+
     }
 
     // Update is called once per frame
