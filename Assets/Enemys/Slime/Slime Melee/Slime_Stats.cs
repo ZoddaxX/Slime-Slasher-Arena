@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class Slime_Stats : MonoBehaviour
 {
-  public Transform jugador;
-  public bool alive = true;
-  public float fuerzaKnockback;
-  public float alturaKnockback;
-  [SerializeField] private float health = 10;
+    public Transform jugador;
+    public bool alive = true;
+    public float fuerzaKnockback;
+    public float alturaKnockback;
+    [SerializeField] private float health = 10;
     private Rigidbody2D rb;
     private void Start()
     {
         //Load rigidbody
         rb = GetComponent<Rigidbody2D>();
+        jugador = GameObject.Find("Player").transform;
     }
     public void TomarDano(float damage, float multiplier)
   {

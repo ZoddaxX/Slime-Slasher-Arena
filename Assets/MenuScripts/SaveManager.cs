@@ -23,4 +23,9 @@ public class SaveManager : MonoBehaviour
     {
         
     }
+
+    public void DeleteSave()
+    {
+        PlayerPrefs.SetInt("TutorialCompleted", 0);
+    }
 }

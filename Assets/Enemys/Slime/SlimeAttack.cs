@@ -15,8 +15,13 @@ public class SlimeAttack : MonoBehaviour
   public BoxCollider2D PlayerCollider;
   public GameObject PlayerGameObject;
 
-  // Update is called once per frame
-  void Update()
+    // Update is called once per frame
+    private void Start()
+    {
+        PlayerHitbox = GameObject.Find("Player").GetComponent<PolygonCollider2D>();
+        PlayerCollider = GameObject.Find("Player").GetComponent<BoxCollider2D>();
+    }
+    void Update()
   {
     var playerRender = PlayerGameObject.GetComponent<Renderer>();
     if (tiempoSiguienteAtaque > 0)
