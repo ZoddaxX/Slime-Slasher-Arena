@@ -12,6 +12,7 @@ TagManager:
   - Terrain
   - Jefe
   - Projectile
+  - UI
   layers:
   - Default
   - TransparentFX

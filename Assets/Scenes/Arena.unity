@@ -528,7 +528,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: SlimeSpawner
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4725331943706812565, guid: 1407c6ee9a1397244ab885a8a281dd04, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1407c6ee9a1397244ab885a8a281dd04, type: 3}
 --- !u!1 &1123376162
 GameObject:
@@ -878,6 +879,10 @@ PrefabInstance:
       propertyPath: slider
       value: 
       objectReference: {fileID: 781116288}
+    - target: {fileID: 4691168060286217773, guid: 97a39a6cb7dab5043960ad89b34927e1, type: 3}
+      propertyPath: gameOverPanel
+      value: 
+      objectReference: {fileID: 2000957911}
     - target: {fileID: 8204650090437841379, guid: 97a39a6cb7dab5043960ad89b34927e1, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1131,9 +1136,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5319203796066377353, guid: 6eb3a4b02e7eb604cb13803441b5aeae, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7185733611418501762, guid: 6eb3a4b02e7eb604cb13803441b5aeae, type: 3}
       propertyPath: m_Name
       value: PlayerUi
       objectReference: {fileID: 0}
+    - target: {fileID: 7185733611418501762, guid: 6eb3a4b02e7eb604cb13803441b5aeae, type: 3}
+      propertyPath: m_TagString
+      value: UI
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6eb3a4b02e7eb604cb13803441b5aeae, type: 3}
+--- !u!1 &2000957911 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5319203796066377353, guid: 6eb3a4b02e7eb604cb13803441b5aeae, type: 3}
+  m_PrefabInstance: {fileID: 2000957910}
+  m_PrefabAsset: {fileID: 0}
