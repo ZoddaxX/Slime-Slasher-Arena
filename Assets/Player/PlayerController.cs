@@ -28,6 +28,8 @@ public class PlayerController : MonoBehaviour
     private float slideTimerCool;
     private bool onKnockback;
     private bool canKnockback;
+    private Camera mainCam;
+    private float mousePosition;
 
     // Start is called before the first frame update
     void Start()
@@ -41,6 +43,7 @@ public class PlayerController : MonoBehaviour
         canKnockback = true;
         PolygonCollider2D playerCollider = GetComponent<PolygonCollider2D>();
         Debug.Log(("El ancho es", playerCollider.bounds.size.x, "y el largo es de", playerCollider.bounds.size.y));
+        mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
 
     }
 
@@ -118,7 +121,10 @@ public class PlayerController : MonoBehaviour
             }
             else slideTimerCool +=Time.deltaTime;
         }
-        if ((horizontal > 0 && !facingRight) | (horizontal < 0 && facingRight))
+
+        mousePosition = mainCam.ScreenToWorldPoint(Input.mousePosition).x;
+
+        if ( (gameObject.transform.position.x - mousePosition < 0 && !facingRight) || (gameObject.transform.position.x - mousePosition >= 0 && facingRight))
         {
             Turn();
         }

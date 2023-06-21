@@ -8,19 +8,18 @@ public class PlayerAttack : MonoBehaviour
     public GameObject attack;
     public PlayerController playerController;
     public GameObject Player;
+    public float tiempoEntreAtaqueLigero;
+    public float tiempoEntreAtaquePesado;
 
     [SerializeField] private Transform controladorGolpe;
     [SerializeField] private float radioGolpe;
     [SerializeField] private float danoGolpeLigero;
     [SerializeField] private float danoGolpePesado;
-    [SerializeField] private float tiempoEntreAtaqueLigero;
-    [SerializeField] private float tiempoEntreAtaquePesado;
 
     private float tiempoSiguienteAtaque;
     private bool flag = true;
     private Camera mainCam;
     private Vector3 mousePos;
-    private float turn;
 
     private void Start()
     {
