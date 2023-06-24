@@ -26,9 +26,12 @@ public class waveSpawner : MonoBehaviour
 
     public SpawnState state = SpawnState.counting;
 
+    public GameObject stats;
+
     private void Start()
     {
         waveCountDown = timeBetweenWaves;
+        stats = GameObject.Find("Stats");
     }
     private void Update()
     {
@@ -85,6 +88,9 @@ public class waveSpawner : MonoBehaviour
         {
             nextWave = 0;
             Debug.Log("Oleadas completadas");
+            stats.SetActive(true);
+            NewStats statsScript = stats.GetComponent<NewStats>();
+            statsScript.RestartScript(); 
         }
     }
     private IEnumerator SpawnWave(Wave _wave)

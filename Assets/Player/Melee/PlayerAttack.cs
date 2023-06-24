@@ -115,4 +115,17 @@ public class PlayerAttack : MonoBehaviour
 
         Gizmos.DrawWireSphere(controladorGolpe.position, radioGolpe);
     }
+
+    public void AddLightAttack(){
+      danoGolpeLigero++;
+    }
+    public void AddHeavyAttack(){
+      danoGolpePesado++;
+    }
+    public float GetLightAttack(){
+      return danoGolpeLigero;
+    }
+    public float GetHeavyAttack(){
+      return danoGolpePesado;
+    }
 }

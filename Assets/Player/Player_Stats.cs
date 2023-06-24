@@ -41,4 +41,14 @@ public class Player_Stats : MonoBehaviour
     gameOverPanel.SetActive(true);
     Debug.Log("Game Over.");
   }
+
+  public void AddHealth(){
+    health += 5;
+    maxHp += 5;
+    slider.transform.GetComponent<HpBarScript>().setHealth(health,maxHp);
+  }
+
+  public float GetMaxHealth(){
+    return maxHp;
+  }
 }
