@@ -31,7 +31,6 @@ public class waveSpawner : MonoBehaviour
     private void Start()
     {
         waveCountDown = timeBetweenWaves;
-        stats = GameObject.Find("Stats");
     }
     private void Update()
     {
