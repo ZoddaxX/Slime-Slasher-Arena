@@ -15,6 +15,7 @@ public class AI_SlimeBoss : MonoBehaviour
     public float RageAttackDuration;
     public RangedAttack rangedAttack;
     public Boss_Stats bossStats;
+    public AudioClip audioGround;
 
     private float lastJump = 0;
     private Rigidbody2D slimeRB;
@@ -28,12 +29,14 @@ public class AI_SlimeBoss : MonoBehaviour
     private float timeOnGround = 0;
     private float porcentajeVida;
     private bool onRage;
+    private AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
     {
         sentido = true;
         player = GameObject.Find("Player");
+        audioSource = GetComponent<AudioSource>();
 
     }
 
@@ -63,6 +66,11 @@ public class AI_SlimeBoss : MonoBehaviour
         if (hit.collider != null && hitleft.collider != null && hitright.collider != null)
         {
             canJump = true;
+            if (timeOnGround == 0)
+            {
+                audioSource.clip = audioGround;
+                audioSource.Play();
+            }
             timeOnGround += Time.deltaTime;
         }
         else
@@ -157,5 +165,9 @@ public class AI_SlimeBoss : MonoBehaviour
         }
 
         slimeRB.gravityScale = 1;  
+    }
+
+    public bool getCanJump(){
+        return canJump;
     }
 }

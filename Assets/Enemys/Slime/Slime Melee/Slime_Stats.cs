@@ -8,13 +8,21 @@ public class Slime_Stats : MonoBehaviour
     public bool alive = true;
     public float fuerzaKnockback;
     public float alturaKnockback;
+    public AudioClip audioHit1;
+    public AudioClip audioHit2;
+    public AudioClip audioHit3;
+    public AudioClip audioDeath;
+
     [SerializeField] private float health = 10;
     private Rigidbody2D rb;
+    private AudioSource audioSource;
+
     private void Start()
     {
         //Load rigidbody
         rb = GetComponent<Rigidbody2D>();
         jugador = GameObject.Find("Player").transform;
+        audioSource = GetComponent<AudioSource>();
     }
     public void TomarDano(float damage, float multiplier)
   {
@@ -25,8 +33,12 @@ public class Slime_Stats : MonoBehaviour
       Death(rb);
       alive = false;
     } else {
-      Debug.Log("Auchis");
-      Debug.Log("SAS");
+      int audio = Random.Range(1,4);
+      if (audio == 1) audioSource.clip = audioHit1;
+      else if (audio == 2) audioSource.clip = audioHit2;
+      else audioSource.clip = audioHit3;
+      audioSource.Play();
+
       Vector2 direccion = transform.position - jugador.position;
       direccion.Normalize();
       direccion += alturaKnockback * Vector2.up;
@@ -38,6 +50,7 @@ public class Slime_Stats : MonoBehaviour
   {
         rb.simulated = false;
         Debug.Log("Me morí x.x");
+        ControladorSonido.Instance.ReproducirSonido(audioDeath);
 
         // Get the sprite renderer component
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();

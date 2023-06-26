@@ -10,6 +10,7 @@ public class AI_SlimeMelee : MonoBehaviour
     public int velSalto;
     public float jumpCooldown;
     public LayerMask Plataform;
+    public AudioClip audioGround;
 
     Slime_Stats slimeStats;
     private float lastJump = 0;
@@ -22,12 +23,14 @@ public class AI_SlimeMelee : MonoBehaviour
     private double distancia;
     private bool canJump = true;
     private float timeOnGround = 0;
+    private AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
     {
         sentido = true;
         player = GameObject.Find("Player");
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -47,7 +50,7 @@ public class AI_SlimeMelee : MonoBehaviour
             return;
         }
 
-        PolygonCollider2D slimeCollider = GetComponent<PolygonCollider2D>();
+        BoxCollider2D slimeCollider = GetComponent<BoxCollider2D>();
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, slimeCollider.bounds.size.y / 2 + 0.1f, Plataform);
         RaycastHit2D hitleft = Physics2D.Raycast(transform.position - new Vector3(slimeCollider.bounds.size.x / 2, 0, 0), Vector2.down, slimeCollider.bounds.size.y / 2 + 0.1f, Plataform);
         RaycastHit2D hitright = Physics2D.Raycast(transform.position + new Vector3(slimeCollider.bounds.size.x / 2, 0, 0), Vector2.down, slimeCollider.bounds.size.y / 2 + 0.1f, Plataform);
@@ -55,6 +58,11 @@ public class AI_SlimeMelee : MonoBehaviour
         if (hit.collider != null || hitleft.collider != null || hitright.collider != null)
         {
             canJump = true;
+            if (timeOnGround == 0)
+            {
+                audioSource.clip = audioGround;
+                audioSource.Play();
+            }
             timeOnGround += Time.deltaTime;
         }
         else

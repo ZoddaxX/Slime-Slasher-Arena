@@ -24,16 +24,26 @@ public class RangedAttack : MonoBehaviour
     private bool isEnraged = false;
     private bool isRage = true;
     private Rigidbody2D slimeRB;
+    private bool Colisionando = false;
+    private Vector3 direccionRebote;
+    private float fuerzaRebote;
+    private float originalScale;
+    private Vector2 direccionIncidencia;
+    private AI_SlimeBoss boss;
+
 
 
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Jugador");
         slimeRB = GetComponent<Rigidbody2D>();
+        originalScale = slimeRB.gravityScale;
+        boss = GetComponent<AI_SlimeBoss>();
     }
 
     private void Update()
     {
+        direccionIncidencia = slimeRB.velocity;
         attackTimer += Time.deltaTime;
         if (attackTimer > attackCd && !isAttacking && !isEnraged)
         {
@@ -42,12 +52,20 @@ public class RangedAttack : MonoBehaviour
         }
         else if (attackTimer > attackCd && !isAttacking && isRage)
         {
-            StartCoroutine(PerformRageAttackCoroutine());
+            while (!boss.getCanJump())
+            {
+                StartCoroutine(PerformRageAttackCoroutine());
+                break;
+            }
         }
         else if (attackTimer > attackCd && !isAttacking && !isRage)
         {
             StartCoroutine(PerformAttackCoroutine());
             attackTimer = 0f;
+        }
+
+        if (isAttacking && isRage && Colisionando && !boss.getCanJump()){
+            slimeRB.velocity = direccionRebote;
         }
 
     }
@@ -95,6 +113,7 @@ public class RangedAttack : MonoBehaviour
         }
 
         ResumeSlimeMovement();
+        Colisionando = false;
         isAttacking = false;
         if (isEnraged) isRage = true;
     }
@@ -105,9 +124,10 @@ public class RangedAttack : MonoBehaviour
 
         yield return new WaitForSeconds(rageAttackWaitTime);
 
-        slimeRB.gravityScale = 0;
         int sentido = Random.Range(0,2);
         float valor = Random.Range(0f,1f);
+
+        slimeRB.gravityScale = 0;
 
         if (sentido == 1)
         {
@@ -117,14 +137,14 @@ public class RangedAttack : MonoBehaviour
         {
             slimeRB.AddForce(new Vector2(RageAttackVelocity * valor * -1, RageAttackVelocity), ForceMode2D.Impulse);
         }
+        Debug.Log(slimeRB.velocity.x + " " + slimeRB.velocity.y);
 
         yield return new WaitForSeconds(rageAttackDuration);
 
-        slimeRB.gravityScale = 1;
+        slimeRB.gravityScale = originalScale;
         ResumeSlimeMovement();
         isAttacking = false;
         isRage = false;
-
     }
 
     private void PauseSlimeMovement()
@@ -139,5 +159,11 @@ public class RangedAttack : MonoBehaviour
 
     public void rageMode(){
         isEnraged = true;
+    }
+
+    void OnCollisionEnter2D(Collision2D colision){
+        direccionRebote = Vector2.Reflect(direccionIncidencia, colision.contacts[0].normal);
+        Colisionando = true;
+        Debug.Log("SAS");
     }
 }

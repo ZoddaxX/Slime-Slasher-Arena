@@ -10,6 +10,8 @@ public class PlayerAttack : MonoBehaviour
     public GameObject Player;
     public float tiempoEntreAtaqueLigero;
     public float tiempoEntreAtaquePesado;
+    public AudioClip audioLightAttack;
+    public AudioClip audioHeavyAttack;
 
     [SerializeField] private Transform controladorGolpe;
     [SerializeField] private float radioGolpe;
@@ -20,12 +22,16 @@ public class PlayerAttack : MonoBehaviour
     private bool flag = true;
     private Camera mainCam;
     private Vector3 mousePos;
+    private AudioSource audioSource;
+    private AudioSource audioSourceAux;
 
     private void Start()
     {
         tiempoSiguienteAtaque = 0f;
         playerController = Player.GetComponent<PlayerController>();
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        audioSource = GetComponent<AudioSource>();
+        audioSourceAux = gameObject.AddComponent<AudioSource>();
     }
         // Update is called once per frame
     void Update()
@@ -74,6 +80,16 @@ public class PlayerAttack : MonoBehaviour
 
     private void GolpeLigero(){
       Collider2D[] objetos = Physics2D.OverlapCircleAll(controladorGolpe.position, radioGolpe);
+      if (audioSource.isPlaying)
+        {
+          audioSourceAux.clip = audioLightAttack;
+          audioSourceAux.Play();
+        }
+        else
+        {
+          audioSource.clip = audioLightAttack;
+          audioSource.Play();
+        }
 
       foreach (Collider2D colisionador in objetos)
       {
@@ -89,6 +105,16 @@ public class PlayerAttack : MonoBehaviour
     private void GolpePesado()
     {
         Collider2D[] objetos = Physics2D.OverlapCircleAll(controladorGolpe.position, radioGolpe);
+        if (audioSource.isPlaying)
+        {
+          audioSourceAux.clip = audioHeavyAttack;
+          audioSourceAux.Play();
+        }
+        else
+        {
+          audioSource.clip = audioHeavyAttack;
+          audioSource.Play();
+        }
 
         foreach (Collider2D colisionador in objetos)
         {

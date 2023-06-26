@@ -9,10 +9,16 @@ public class Boss_Stats : MonoBehaviour
   public float fuerzaKnockback;
   public float alturaKnockback;
   public RangedAttack rangedAttack;
+  public AudioClip audioHit1;
+  public AudioClip audioHit2;
+  public AudioClip audioHit3;
+  public AudioClip audioDeath;
+
   [SerializeField] private float health = 10;
   private Rigidbody2D rb;
   private float healthPercentage;
   private float initialHealth;
+  private AudioSource audioSource;
 
     private void Start()
     {
@@ -21,6 +27,7 @@ public class Boss_Stats : MonoBehaviour
         healthPercentage = 1;
         initialHealth = health;
         rangedAttack = GetComponent<RangedAttack>();
+        audioSource = GetComponent<AudioSource>();
     }
     public void TomarDano(float damage, float multiplier)
   {
@@ -37,9 +44,12 @@ public class Boss_Stats : MonoBehaviour
       Death(rb);
       alive = false;
     } else {
-      Debug.Log("Auchis");
-      Debug.Log("SAS");
-      Debug.Log(healthPercentage);
+      int audio = Random.Range(1,4);
+      if (audio == 1) audioSource.clip = audioHit1;
+      else if (audio == 2) audioSource.clip = audioHit2;
+      else audioSource.clip = audioHit3;
+      audioSource.Play();
+      
       Vector2 direccion = transform.position - jugador.position;
       direccion.Normalize();
       direccion += alturaKnockback * Vector2.up;
@@ -50,7 +60,7 @@ public class Boss_Stats : MonoBehaviour
   private void Death(Rigidbody2D rb)
   {
         rb.simulated = false;
-        Debug.Log("Me morí x.x");
+        ControladorSonido.Instance.ReproducirSonido(audioDeath);
 
         // Get the sprite renderer component
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();

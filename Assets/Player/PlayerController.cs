@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour
     public float alturaKnockback;
     public float fuerzaKnockback;
     public float invisTimer;
+    public AudioClip audioSlide;
+    public AudioClip audioWalk;
 
     private bool onFloor;
     private float horizontal;
@@ -30,6 +32,8 @@ public class PlayerController : MonoBehaviour
     private bool canKnockback;
     private Camera mainCam;
     private float mousePosition;
+    private AudioSource audioSource;
+    private bool walkSound;
 
     // Start is called before the first frame update
     void Start()
@@ -44,7 +48,8 @@ public class PlayerController : MonoBehaviour
         PolygonCollider2D playerCollider = GetComponent<PolygonCollider2D>();
         Debug.Log(("El ancho es", playerCollider.bounds.size.x, "y el largo es de", playerCollider.bounds.size.y));
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-
+        audioSource = GetComponent<AudioSource>();
+        walkSound = false;
     }
 
     // Update is called once per frame
@@ -79,6 +84,18 @@ public class PlayerController : MonoBehaviour
         // Movimiento
         if (horizontal != 0f && !isCrouching && !onKnockback)
         {
+            if (!walkSound)
+            {
+                audioSource.clip = audioWalk;
+                audioSource.Play();
+                walkSound = true;
+            }
+            else if (!audioSource.isPlaying)
+            {
+                audioSource.clip = audioWalk;
+                audioSource.Play();
+            }
+
             if (Mathf.Abs(rigidBody.velocity.x) <= velHorizontalMax-2 && !isSliding && !onKnockback)
             {
                 rigidBody.AddForce(new Vector2(horizontal * velHorizontalJugador, 0), ForceMode2D.Impulse);
@@ -90,6 +107,11 @@ public class PlayerController : MonoBehaviour
             {
                 rigidBody.velocity = Vector2.right * velHorizontalMax * horizontal + Vector2.up * rigidBody.velocity.y;
             }
+        }
+        else if (walkSound)
+        {
+            audioSource.Stop();
+            walkSound = false;
         }
         // Saltar
         if (vertical > 0f && onFloor && canJump)
@@ -129,6 +151,11 @@ public class PlayerController : MonoBehaviour
             Turn();
         }
 
+        if (rigidBody.velocity.x == 0 && rigidBody.velocity.y == 0)
+        {
+            audioSource.Stop();
+        }
+
     }
 
     private void Turn()
@@ -144,6 +171,8 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator SlideRoutine()     
     {
+        audioSource.clip = audioSlide;
+        audioSource.Play();
         canSlide = false;
         isSliding = true;
         rigidBody.velocity = new Vector2(horizontal * 2* velSlide, 0f);
@@ -152,6 +181,7 @@ public class PlayerController : MonoBehaviour
         isSliding = false;
         yield return new WaitForSeconds(slideCooldown);
         canSlide = true;
+        audioSource.Stop();
         Debug.Log("end slide");
     }
 
