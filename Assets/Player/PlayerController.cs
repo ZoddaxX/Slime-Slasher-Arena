@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     public float invisTimer;
     public AudioClip audioSlide;
     public AudioClip audioWalk;
+    public Animator animator;
 
     private bool onFloor;
     private float horizontal;
@@ -126,6 +127,7 @@ public class PlayerController : MonoBehaviour
             isCrouching = true;
             Debug.Log("Agachado");
             transform.localScale = new Vector2(transform.localScale.x, transform.localScale.y * 0.5f);
+            animator.SetBool("crouch", true);
 
         }
 
@@ -133,6 +135,7 @@ public class PlayerController : MonoBehaviour
         {
             isCrouching = false;
             transform.localScale = new Vector2(transform.localScale.x, transform.localScale.y * 2f);
+            animator.SetBool("crouch", false);
         }
         // Slide
         if (isCrouching && onFloor && !isSliding && horizontal != 0 && !onKnockback)
