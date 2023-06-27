@@ -18,7 +18,7 @@ public class WeaponRotation : MonoBehaviour
     private void Start()
     {
         playerController = Player.GetComponent<PlayerController>();
-        //playerAttack = Player.GetComponent<PlayerAttack>();
+        
         weaponPivot = GetComponentInChildren<WeaponRotation>();
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
     }
