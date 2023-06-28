@@ -24,13 +24,16 @@ public class AI_SlimeMelee : MonoBehaviour
     private bool canJump = true;
     private float timeOnGround = 0;
     private AudioSource audioSource;
+    private SpriteRenderer spriteRenderer;
 
     // Start is called before the first frame update
     void Start()
     {
         sentido = true;
         player = GameObject.Find("Player");
-        audioSource = GetComponent<AudioSource>();
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.volume = 0.5f;
+        spriteRenderer =  GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -60,6 +63,7 @@ public class AI_SlimeMelee : MonoBehaviour
             canJump = true;
             if (timeOnGround == 0)
             {
+                Debug.Log("SAS");
                 audioSource.clip = audioGround;
                 audioSource.Play();
             }
@@ -117,6 +121,7 @@ public class AI_SlimeMelee : MonoBehaviour
         {
             slimeRB.AddForce(new Vector2(-velHorizontal, velSalto), ForceMode2D.Impulse);
         }
+        spriteRenderer.flipX = !sentido_s;
     }
 
     void slime_agro()

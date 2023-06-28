@@ -85,17 +85,18 @@ public class PlayerController : MonoBehaviour
         // Movimiento
         if (horizontal != 0f && !isCrouching && !onKnockback)
         {
-            if (!walkSound)
+            if (!walkSound && onFloor)
             {
                 audioSource.clip = audioWalk;
                 audioSource.Play();
                 walkSound = true;
             }
-            else if (!audioSource.isPlaying)
+            else if (!audioSource.isPlaying && onFloor)
             {
                 audioSource.clip = audioWalk;
                 audioSource.Play();
             }
+            if (!onFloor) audioSource.Stop();
 
             if (Mathf.Abs(rigidBody.velocity.x) <= velHorizontalMax-2 && !isSliding && !onKnockback)
             {
@@ -187,7 +188,6 @@ public class PlayerController : MonoBehaviour
         audioSource.Stop();
         Debug.Log("end slide");
     }
-
 
     IEnumerator invisCooldown(){
         yield return new WaitForSeconds(invisTimer);

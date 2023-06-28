@@ -30,6 +30,7 @@ public class AI_SlimeBoss : MonoBehaviour
     private float porcentajeVida;
     private bool onRage;
     private AudioSource audioSource;
+    private SpriteRenderer spriteRenderer;
 
     // Start is called before the first frame update
     void Start()
@@ -37,6 +38,7 @@ public class AI_SlimeBoss : MonoBehaviour
         sentido = true;
         player = GameObject.Find("Player");
         audioSource = GetComponent<AudioSource>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
     }
 
@@ -58,7 +60,7 @@ public class AI_SlimeBoss : MonoBehaviour
             return;
         }
 
-        PolygonCollider2D slimeCollider = GetComponent<PolygonCollider2D>();
+        BoxCollider2D slimeCollider = GetComponent<BoxCollider2D>();
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, slimeCollider.bounds.size.y / 2 + 0.1f, Plataform);
         RaycastHit2D hitleft = Physics2D.Raycast(transform.position - new Vector3(slimeCollider.bounds.size.x / 2, 0, 0), Vector2.down, slimeCollider.bounds.size.y / 2 + 0.1f, Plataform);
         RaycastHit2D hitright = Physics2D.Raycast(transform.position + new Vector3(slimeCollider.bounds.size.x / 2, 0, 0), Vector2.down, slimeCollider.bounds.size.y / 2 + 0.1f, Plataform);
@@ -125,6 +127,7 @@ public class AI_SlimeBoss : MonoBehaviour
         {
             slimeRB.AddForce(new Vector2(-velHorizontal, velSalto), ForceMode2D.Impulse);
         }
+        spriteRenderer.flipX = !sentido_s;
     }
 
     void slime_agro()

@@ -22,7 +22,8 @@ public class Slime_Stats : MonoBehaviour
         //Load rigidbody
         rb = GetComponent<Rigidbody2D>();
         jugador = GameObject.Find("Player").transform;
-        audioSource = GetComponent<AudioSource>();
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.volume = 0.5f;
     }
     public void TomarDano(float damage, float multiplier)
   {
@@ -49,7 +50,6 @@ public class Slime_Stats : MonoBehaviour
   private void Death(Rigidbody2D rb)
   {
         rb.simulated = false;
-        Debug.Log("Me morí x.x");
         ControladorSonido.Instance.ReproducirSonido(audioDeath);
 
         // Get the sprite renderer component
