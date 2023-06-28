@@ -65,7 +65,7 @@ Transform:
   m_GameObject: {fileID: 5941031085044499005}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 6.41, y: -2.15, z: 0}
-  m_LocalScale: {x: 4.48, y: 3.1999998, z: 1}
+  m_LocalScale: {x: 6.4, y: 6.4, z: 2.1844}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 771472227}
@@ -112,7 +112,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 626444182b16d74d79601c4a6fde2e4a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -149,10 +149,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.5, y: 0.5}
+    - - {x: -0.50135183, y: 0.16805652}
       - {x: -0.5, y: -0.5}
       - {x: 0.5, y: -0.5}
-      - {x: 0.5, y: 0.5}
+      - {x: 0.5, y: 0.17084318}
 --- !u!50 &5941031085044498979
 Rigidbody2D:
   serializedVersion: 4
@@ -187,7 +187,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.16276914}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -198,7 +198,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 0.6744617}
   m_EdgeRadius: 0
 --- !u!114 &3373012219903042415
 MonoBehaviour:
@@ -220,11 +220,11 @@ MonoBehaviour:
   Plataform:
     serializedVersion: 2
     m_Bits: 8
-  RageAttackCooldown: 0
-  RageAttackVelocity: 0
-  RageAttackDuration: 0
-  rangedAttack: {fileID: 0}
-  bossStats: {fileID: 0}
+  RageAttackCooldown: 10
+  RageAttackVelocity: 8
+  RageAttackDuration: 5
+  rangedAttack: {fileID: 77052415}
+  bossStats: {fileID: 491243974885270559}
   audioGround: {fileID: 8300000, guid: 69be8d0f7ce96a74b92a4e991bde141f, type: 3}
 --- !u!114 &491243974885270559
 MonoBehaviour:
@@ -309,7 +309,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 0.3
-  m_Pitch: 1
+  m_Pitch: -0.21
   Loop: 0
   Mute: 0
   Spatialize: 0
