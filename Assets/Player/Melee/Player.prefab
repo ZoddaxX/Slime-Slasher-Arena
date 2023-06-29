@@ -259,7 +259,7 @@ MonoBehaviour:
   audioHeavyAttack: {fileID: 8300000, guid: 8b19540d5504db84b84fd48bbf943304, type: 3}
   controladorGolpe: {fileID: 8204650091785290053}
   radioGolpe: 1.5
-  danoGolpeLigero: 10
+  danoGolpeLigero: 1
   danoGolpePesado: 4
 --- !u!82 &837503836925053830
 AudioSource:
@@ -273,7 +273,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.3
   m_Pitch: 1.43
   Loop: 0
   Mute: 0
@@ -659,7 +659,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 583cb95b482c5e74cb1c5ff33a5b9291, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 1
   Mute: 0

@@ -250,7 +250,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controladorGolpe: {fileID: 771472227}
-  radioGolpe: 1
+  radioGolpe: 0.3
   "da\xF1oGolpe": 10
   tiempoEntreAtaque: 0.5
   tiempoSiguienteAtaque: 1

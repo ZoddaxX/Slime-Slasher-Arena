@@ -60,11 +60,14 @@ public class PlayerController : MonoBehaviour
         if (rayo.collider != null)
         {
             onFloor = true;
+            animator.SetBool("grounded", true);
         }
         else
         {
             onFloor = false;
+            animator.SetBool("grounded", false);
         }
+        if (rigidBody.velocity.y == 0) animator.SetBool("jump", false);
 
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
@@ -73,6 +76,8 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        animator.SetFloat("airSpeed", rigidBody.velocity.y);
+        animator.SetFloat("facing", transform.localScale.x * rigidBody.velocity.x);
         if (isSliding)
         {
             return;
@@ -85,6 +90,7 @@ public class PlayerController : MonoBehaviour
         // Movimiento
         if (horizontal != 0f && !isCrouching && !onKnockback)
         {
+            animator.SetBool("walking", true);
             if (!walkSound && onFloor)
             {
                 audioSource.clip = audioWalk;
@@ -96,6 +102,7 @@ public class PlayerController : MonoBehaviour
                 audioSource.clip = audioWalk;
                 audioSource.Play();
             }
+
             if (!onFloor) audioSource.Stop();
 
             if (Mathf.Abs(rigidBody.velocity.x) <= velHorizontalMax-2 && !isSliding && !onKnockback)
@@ -115,9 +122,11 @@ public class PlayerController : MonoBehaviour
             audioSource.Stop();
             walkSound = false;
         }
+        else animator.SetBool("walking", false);
         // Saltar
         if (vertical > 0f && onFloor && canJump)
         {
+            animator.SetBool("jump", true);
             rigidBody.AddForce(new Vector2(0, vertical * velVerticalJugador), ForceMode2D.Impulse);
             canJump = false;
             Debug.Log("Saltando");
@@ -175,6 +184,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator SlideRoutine()     
     {
+        animator.SetBool("sliding", true);
         audioSource.clip = audioSlide;
         audioSource.Play();
         canSlide = false;
@@ -187,6 +197,7 @@ public class PlayerController : MonoBehaviour
         canSlide = true;
         audioSource.Stop();
         Debug.Log("end slide");
+        animator.SetBool("sliding", false);
     }
 
     IEnumerator invisCooldown(){
