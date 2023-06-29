@@ -12,6 +12,7 @@ public class PlayerAttack : MonoBehaviour
     public float tiempoEntreAtaquePesado;
     public AudioClip audioLightAttack;
     public AudioClip audioHeavyAttack;
+    public bool attackEmpty = true;
 
     [SerializeField] private Transform controladorGolpe;
     [SerializeField] private float radioGolpe;
@@ -24,6 +25,7 @@ public class PlayerAttack : MonoBehaviour
     private Vector3 mousePos;
     private AudioSource audioSource;
     private AudioSource audioSourceAux;
+    
 
     private void Start()
     {
@@ -32,6 +34,7 @@ public class PlayerAttack : MonoBehaviour
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         audioSource = GetComponent<AudioSource>();
         audioSourceAux = gameObject.AddComponent<AudioSource>();
+        audioSource.volume = 0.3f;
     }
         // Update is called once per frame
     void Update()
@@ -91,15 +94,25 @@ public class PlayerAttack : MonoBehaviour
           audioSource.Play();
         }
 
-      foreach (Collider2D colisionador in objetos)
-      {
-        if (colisionador.CompareTag("Enemigo")){
-          colisionador.transform.GetComponent<Slime_Stats>().TomarDano(danoGolpeLigero, 1);
+        foreach (Collider2D colisionador in objetos)
+        {
+            if (colisionador.CompareTag("Enemigo"))
+            {
+                    colisionador.transform.GetComponent<Slime_Stats>().TomarDano(danoGolpeLigero, 1);
+                    attackEmpty = false;
+            }
+            else if (colisionador.CompareTag("Jefe"))
+            {
+                    colisionador.transform.GetComponent<Boss_Stats>().TomarDano(danoGolpeLigero, 1);
+                    attackEmpty = false;
+            }
+
         }
-        else if (colisionador.CompareTag("Jefe")){
-          colisionador.transform.GetComponent<Boss_Stats>().TomarDano(danoGolpeLigero, 1);
+        if (!attackEmpty)
+        {
+            StartCoroutine(hitWait(0.07f,"l"));
+            attackEmpty = true;
         }
-      }
     }
 
     private void GolpePesado()
@@ -121,19 +134,37 @@ public class PlayerAttack : MonoBehaviour
             if (colisionador.CompareTag("Enemigo"))
             {
                 colisionador.transform.GetComponent<Slime_Stats>().TomarDano(danoGolpePesado, heavyKnockbackMultiplier);
+                Debug.Log("attack not empty");
+                attackEmpty = false;
+
             }
             else if (colisionador.CompareTag("Jefe")){
                 colisionador.transform.GetComponent<Boss_Stats>().TomarDano(danoGolpePesado, heavyKnockbackMultiplier);
+                attackEmpty = false;
             }
         }
-      }
-    
-    IEnumerator DrawAttack(float timer)
-    {
-        attack.SetActive(true);
-        yield return new WaitForSeconds(timer);
-        attack.SetActive(false);
+        if (!attackEmpty)
+        {
+            StartCoroutine(hitWait(0.15f,"h"));
+            attackEmpty = true;
+        }
+
     }
+
+    IEnumerator hitWait(float duration,string mode)
+    {
+        float delay = 0f;
+        if (mode == "l")
+            delay = 0.1f;
+        else if (mode == "h")
+            delay = 0.2f;
+            
+        yield return new WaitForSeconds(delay);
+        Time.timeScale = 0f;
+        yield return new WaitForSecondsRealtime(duration);
+        Time.timeScale = 1;
+    }
+    
 
     void OnDrawGizmos()
     {

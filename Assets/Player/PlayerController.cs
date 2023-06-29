@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     public AudioClip audioWalk;
     public Animator animator;
 
+    [SerializeField] private TrailRenderer trail;
     private bool onFloor;
     private float horizontal;
     private float vertical;
@@ -91,6 +92,7 @@ public class PlayerController : MonoBehaviour
         if (horizontal != 0f && !isCrouching && !onKnockback)
         {
             animator.SetBool("walking", true);
+            trail.emitting = false;
             if (!walkSound && onFloor)
             {
                 audioSource.clip = audioWalk;
@@ -129,10 +131,11 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("jump", true);
             rigidBody.AddForce(new Vector2(0, vertical * velVerticalJugador), ForceMode2D.Impulse);
             canJump = false;
+            trail.emitting = false;
             Debug.Log("Saltando");
         }
         // Agacharse
-        if (vertical < 0 && !isCrouching)
+        if (vertical < 0 && !isCrouching && onFloor)
         {
             isCrouching = true;
             Debug.Log("Agachado");
@@ -189,12 +192,14 @@ public class PlayerController : MonoBehaviour
         audioSource.Play();
         canSlide = false;
         isSliding = true;
+        trail.emitting = true;
         rigidBody.velocity = new Vector2(horizontal * 2* velSlide, 0f);
         Debug.Log("start slide");
         yield return new WaitForSeconds(slideTime);
         isSliding = false;
         yield return new WaitForSeconds(slideCooldown);
         canSlide = true;
+        trail.emitting = false;
         audioSource.Stop();
         Debug.Log("end slide");
         animator.SetBool("sliding", false);

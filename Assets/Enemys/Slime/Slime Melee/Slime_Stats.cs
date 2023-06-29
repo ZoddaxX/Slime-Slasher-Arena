@@ -23,7 +23,7 @@ public class Slime_Stats : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         jugador = GameObject.Find("Player").transform;
         audioSource = gameObject.AddComponent<AudioSource>();
-        audioSource.volume = 0.5f;
+        audioSource.volume = 0.3f;
     }
     public void TomarDano(float damage, float multiplier)
   {

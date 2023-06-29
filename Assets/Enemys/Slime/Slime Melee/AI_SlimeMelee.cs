@@ -10,7 +10,9 @@ public class AI_SlimeMelee : MonoBehaviour
     public int velSalto;
     public float jumpCooldown;
     public LayerMask Plataform;
+    public Animator animator;
     public AudioClip audioGround;
+    
 
     Slime_Stats slimeStats;
     private float lastJump = 0;
@@ -26,6 +28,7 @@ public class AI_SlimeMelee : MonoBehaviour
     private AudioSource audioSource;
     private SpriteRenderer spriteRenderer;
     private bool esVisible;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -63,9 +66,9 @@ public class AI_SlimeMelee : MonoBehaviour
         if (hit.collider != null || hitleft.collider != null || hitright.collider != null)
         {
             canJump = true;
+            animator.SetBool("jump", false);
             if (timeOnGround == 0 && esVisible)
             {
-                Debug.Log("SAS");
                 audioSource.clip = audioGround;
                 audioSource.Play();
             }
@@ -75,6 +78,8 @@ public class AI_SlimeMelee : MonoBehaviour
         {
             canJump = false;
             timeOnGround = 0;
+            animator.SetBool("jump", true);
+
         }
 
         if (Time.time - lastJump > jumpCooldown && timeOnGround > jumpCooldown && canJump)
