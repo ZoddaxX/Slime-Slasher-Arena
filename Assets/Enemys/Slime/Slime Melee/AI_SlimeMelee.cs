@@ -25,6 +25,7 @@ public class AI_SlimeMelee : MonoBehaviour
     private float timeOnGround = 0;
     private AudioSource audioSource;
     private SpriteRenderer spriteRenderer;
+    private bool esVisible;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +35,7 @@ public class AI_SlimeMelee : MonoBehaviour
         audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.volume = 0.5f;
         spriteRenderer =  GetComponent<SpriteRenderer>();
+        esVisible = false;
     }
 
     // Update is called once per frame
@@ -61,7 +63,7 @@ public class AI_SlimeMelee : MonoBehaviour
         if (hit.collider != null || hitleft.collider != null || hitright.collider != null)
         {
             canJump = true;
-            if (timeOnGround == 0)
+            if (timeOnGround == 0 && esVisible)
             {
                 Debug.Log("SAS");
                 audioSource.clip = audioGround;
@@ -135,5 +137,13 @@ public class AI_SlimeMelee : MonoBehaviour
         {
             jump(true, velHorizontal, velSalto);
         }
+    }
+
+    private void OnBecameVisible(){
+        esVisible = true;
+    }
+
+    private void OnBecameInvisible(){
+        esVisible = false;
     }
 }

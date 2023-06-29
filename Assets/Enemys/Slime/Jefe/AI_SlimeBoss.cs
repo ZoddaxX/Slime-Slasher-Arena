@@ -31,6 +31,7 @@ public class AI_SlimeBoss : MonoBehaviour
     private bool onRage;
     private AudioSource audioSource;
     private SpriteRenderer spriteRenderer;
+    private bool esVisible;
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +40,7 @@ public class AI_SlimeBoss : MonoBehaviour
         player = GameObject.Find("Player");
         audioSource = GetComponent<AudioSource>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        esVisible = false;
 
     }
 
@@ -68,7 +70,7 @@ public class AI_SlimeBoss : MonoBehaviour
         if (hit.collider != null && hitleft.collider != null && hitright.collider != null)
         {
             canJump = true;
-            if (timeOnGround == 0)
+            if (timeOnGround == 0 && esVisible)
             {
                 audioSource.clip = audioGround;
                 audioSource.Play();
@@ -172,5 +174,13 @@ public class AI_SlimeBoss : MonoBehaviour
 
     public bool getCanJump(){
         return canJump;
+    }
+
+    private void OnBecameVisible(){
+        esVisible = true;
+    }
+
+    private void OnBecameInvisible(){
+        esVisible = false;
     }
 }
