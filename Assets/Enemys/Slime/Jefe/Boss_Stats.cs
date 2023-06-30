@@ -24,17 +24,19 @@ public class Boss_Stats : MonoBehaviour
     {
         //Load rigidbody
         rb = GetComponent<Rigidbody2D>();
-        healthPercentage = 1;
-        initialHealth = health;
         rangedAttack = GetComponent<RangedAttack>();
         audioSource = GetComponent<AudioSource>();
+        healthPercentage = 1;
+        if (NewStats.BossSlimeHealth == 0) NewStats.BossSlimeHealth = health;
+        else health = NewStats.BossSlimeHealth;
+        initialHealth = health;
     }
     public void TomarDano(float damage, float multiplier)
   {
     health -= damage;
     healthPercentage = health * 100 / initialHealth;
     
-    if (healthPercentage <= 40)
+    if (healthPercentage <= 0.4f)
     {
       Debug.Log("TOY ENOJAO >:D");
       rangedAttack.rageMode();

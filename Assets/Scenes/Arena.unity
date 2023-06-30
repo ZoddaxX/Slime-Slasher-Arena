@@ -1664,7 +1664,7 @@ RectTransform:
   m_Children:
   - {fileID: 873338468}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1692,6 +1692,11 @@ MonoBehaviour:
   LAttack: {fileID: 385753280}
   HAttack: {fileID: 845133267}
   Health: {fileID: 383826443}
+  MeleeSlimeDamageIncrease: 0
+  MeleeSlimeHealthIncrease: 0
+  BossSlimeMeleeDamageIncrease: 0
+  BossSlimeRangedDamageIncrease: 0
+  BossSlimeHealthIncrease: 0
 --- !u!1 &845133266
 GameObject:
   m_ObjectHideFlags: 0
@@ -1990,6 +1995,10 @@ PrefabInstance:
     - target: {fileID: 5807334886987679564, guid: 1407c6ee9a1397244ab885a8a281dd04, type: 3}
       propertyPath: m_Name
       value: SlimeSpawner
+      objectReference: {fileID: 0}
+    - target: {fileID: 5807334886987679564, guid: 1407c6ee9a1397244ab885a8a281dd04, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4725331943706812565, guid: 1407c6ee9a1397244ab885a8a281dd04, type: 3}
@@ -4644,7 +4653,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4568986178495213854, guid: a7ad8de321a0c9248b210c1e220656d5, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4568986178495213854, guid: a7ad8de321a0c9248b210c1e220656d5, type: 3}
       propertyPath: m_LocalPosition.x

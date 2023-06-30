@@ -141,3 +141,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 460f78f84577bd84f949faf615d708d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slimeDeathVolume: 0.6
+  slimeDeathSound: {fileID: 8300000, guid: 85c70bc2189615a4faec1641069475e1, type: 3}

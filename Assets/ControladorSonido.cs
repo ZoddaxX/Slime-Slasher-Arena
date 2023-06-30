@@ -9,7 +9,9 @@ public class ControladorSonido : MonoBehaviour
     private AudioSource audioSource2;
     private AudioSource audioSource3;
     private AudioSource audioSource4;
-    private AudioSource audioSource5; 
+    private AudioSource audioSource5;
+    public float slimeDeathVolume; 
+    public AudioClip slimeDeathSound;
 
     void Awake(){
         if (Instance == null)
@@ -29,10 +31,21 @@ public class ControladorSonido : MonoBehaviour
     }
 
     public void ReproducirSonido(AudioClip sonido){
-        if (!audioSource1.isPlaying) audioSource1.PlayOneShot(sonido);
-        else if (!audioSource2.isPlaying) audioSource2.PlayOneShot(sonido);
-        else if (!audioSource3.isPlaying) audioSource3.PlayOneShot(sonido);
-        else if (!audioSource4.isPlaying) audioSource4.PlayOneShot(sonido);
-        else audioSource5.PlayOneShot(sonido);
+        if (!audioSource1.isPlaying) VerificarSonido(sonido, audioSource1);
+        else if (!audioSource2.isPlaying) VerificarSonido(sonido, audioSource2);
+        else if (!audioSource3.isPlaying) VerificarSonido(sonido, audioSource3);
+        else if (!audioSource4.isPlaying) VerificarSonido(sonido, audioSource4);
+        else VerificarSonido(sonido, audioSource5);
+    }
+
+    private void VerificarSonido(AudioClip sonido, AudioSource audioSource){
+        float aux = audioSource.volume;
+        if (sonido == slimeDeathSound)
+        {
+            audioSource.volume = slimeDeathVolume;
+        }
+        audioSource.PlayOneShot(sonido);
+        while (audioSource.isPlaying){}
+        audioSource.volume = aux;
     }
 }

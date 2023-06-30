@@ -15,6 +15,17 @@ public class NewStats : MonoBehaviour
     public TextMeshProUGUI LAttack;
     public TextMeshProUGUI HAttack;
     public TextMeshProUGUI Health;
+    public float MeleeSlimeDamageIncrease;
+    public float MeleeSlimeHealthIncrease;
+    public float BossSlimeMeleeDamageIncrease;
+    public float BossSlimeRangedDamageIncrease;
+    public float BossSlimeHealthIncrease; 
+    public static float MeleeSlimeDamage;
+    public static float MeleeSlimeHealth;
+    public static float BossSlimeMeleeDamage;
+    public static float BossSlimeRangedDamage;
+    public static float BossSlimeHealth;
+
 
     void Start(){
         player = GameObject.Find("Player");
@@ -53,11 +64,20 @@ public class NewStats : MonoBehaviour
         Time.timeScale = 0f;
     }
 
+    public void BuffEnemies(){
+        MeleeSlimeDamage += MeleeSlimeDamageIncrease;
+        MeleeSlimeHealth += MeleeSlimeHealthIncrease;
+        BossSlimeMeleeDamage += BossSlimeMeleeDamageIncrease;
+        BossSlimeRangedDamage += BossSlimeRangedDamageIncrease;
+        BossSlimeHealth += BossSlimeHealthIncrease;
+    }
+
     void Update(){
         if (puntosHabilidad == 0)
         {
             puntosHabilidad = puntosHabilidadInicial;
             Time.timeScale = 1f;
+            BuffEnemies();
             gameObject.SetActive(false);
 
         }

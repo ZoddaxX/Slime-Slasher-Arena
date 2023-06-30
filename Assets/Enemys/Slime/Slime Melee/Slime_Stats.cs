@@ -24,6 +24,8 @@ public class Slime_Stats : MonoBehaviour
         jugador = GameObject.Find("Player").transform;
         audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.volume = 0.3f;
+        if (NewStats.MeleeSlimeHealth == 0) NewStats.MeleeSlimeHealth = health; 
+        else health = NewStats.MeleeSlimeHealth;
     }
     public void TomarDano(float damage, float multiplier)
   {

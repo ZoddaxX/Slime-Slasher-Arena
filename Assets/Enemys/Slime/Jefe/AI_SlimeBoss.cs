@@ -10,10 +10,6 @@ public class AI_SlimeBoss : MonoBehaviour
     public int velSalto;
     public float jumpCooldown;
     public LayerMask Plataform;
-    public float RageAttackCooldown;
-    public float RageAttackVelocity;
-    public float RageAttackDuration;
-    public RangedAttack rangedAttack;
     public Boss_Stats bossStats;
     public AudioClip audioGround;
 
@@ -28,7 +24,6 @@ public class AI_SlimeBoss : MonoBehaviour
     private bool canJump = true;
     private float timeOnGround = 0;
     private float porcentajeVida;
-    private bool onRage;
     private AudioSource audioSource;
     private SpriteRenderer spriteRenderer;
     private bool esVisible;
@@ -53,7 +48,6 @@ public class AI_SlimeBoss : MonoBehaviour
         slime_y = transform.position.y;
         slimeRB = GetComponent<Rigidbody2D>();
         bossStats = GetComponent<Boss_Stats>();
-        rangedAttack = GetComponent<RangedAttack>();
 
         distancia = Mathf.Pow(Mathf.Pow(slime_x - player_x, 2) + Mathf.Pow(slime_y - player_y, 2),0.5f);
         
@@ -143,33 +137,6 @@ public class AI_SlimeBoss : MonoBehaviour
         {
             jump(true, velHorizontal, velSalto);
         }
-    }
-
-    void rage_attack()
-    {
-        slimeRB.gravityScale = 0;
-        int sentido = Random.Range(0,2);
-        float valor = Random.Range(0f,1f);
-
-        if (sentido == 1)
-        {
-            slimeRB.AddForce(new Vector2(RageAttackVelocity, RageAttackVelocity), ForceMode2D.Impulse);
-        }
-        else
-        {
-            slimeRB.AddForce(new Vector2(RageAttackVelocity, RageAttackVelocity), ForceMode2D.Impulse);
-        }
-
-        StartCoroutine(inRage());
-    }
-
-    IEnumerator inRage(){
-        yield return(new WaitForSeconds(RageAttackDuration));
-        while (!canJump){
-            yield return 0;
-        }
-
-        slimeRB.gravityScale = 1;  
     }
 
     public bool getCanJump(){

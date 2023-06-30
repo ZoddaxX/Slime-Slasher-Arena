@@ -32,7 +32,6 @@ public class RangedAttack : MonoBehaviour
     private AI_SlimeBoss boss;
 
 
-
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Jugador");
@@ -50,15 +49,14 @@ public class RangedAttack : MonoBehaviour
             StartCoroutine(PerformAttackCoroutine());
             attackTimer = 0f;
         }
-        else if (attackTimer > attackCd && !isAttacking && isRage)
+        else if (attackTimer > attackCd && !isAttacking && isRage && isEnraged)
         {
-            while (!boss.getCanJump())
-            {
-                StartCoroutine(PerformRageAttackCoroutine());
-                break;
-            }
+            Debug.Log("BUG");
+            while (!boss.getCanJump()){}
+            StartCoroutine(PerformRageAttackCoroutine());
+            attackTimer = 0f;
         }
-        else if (attackTimer > attackCd && !isAttacking && !isRage)
+        else if (attackTimer > attackCd && !isAttacking && !isRage && isEnraged)
         {
             StartCoroutine(PerformAttackCoroutine());
             attackTimer = 0f;
@@ -164,6 +162,5 @@ public class RangedAttack : MonoBehaviour
     void OnCollisionEnter2D(Collision2D colision){
         direccionRebote = Vector2.Reflect(direccionIncidencia, colision.contacts[0].normal);
         Colisionando = true;
-        Debug.Log("SAS");
     }
 }

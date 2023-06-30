@@ -21,6 +21,8 @@ public class SlimeAttack : MonoBehaviour
         PlayerGameObject = GameObject.Find("Player");
         PlayerHitbox = PlayerGameObject.GetComponent<PolygonCollider2D>();
         PlayerCollider = PlayerGameObject.GetComponent<BoxCollider2D>();
+        if (NewStats.MeleeSlimeDamage == 0) NewStats.MeleeSlimeDamage = dañoGolpe;
+        else dañoGolpe = NewStats.MeleeSlimeDamage;
     }
     void Update()
   {
