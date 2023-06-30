@@ -55,7 +55,6 @@ public class PlayerAttack : MonoBehaviour
         {
         GolpeLigero();
         //StartCoroutine(DrawAttack(0.1f));
-        Debug.Log("atk ligero");
         tiempoSiguienteAtaque = tiempoEntreAtaqueLigero;
         flag = false;
         }
@@ -63,7 +62,6 @@ public class PlayerAttack : MonoBehaviour
         if ((Input.GetKey("c") || Input.GetMouseButtonDown(1))&& tiempoSiguienteAtaque <= 0 && flag){ // GetMouseButtonDown(1)
         GolpePesado();
         //StartCoroutine(DrawAttack(0.2f));
-        Debug.Log("atk fuerte");
         tiempoSiguienteAtaque = tiempoEntreAtaquePesado;
         flag = false;
         }

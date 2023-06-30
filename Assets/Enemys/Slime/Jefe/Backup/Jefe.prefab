@@ -139,8 +139,8 @@ PolygonCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0.19999999}
-    pivot: {x: 0.5, y: 0.34375}
+    border: {x: 0, y: 0, z: 0, w: 0.06}
+    pivot: {x: 0.5, y: 0.453125}
     oldSize: {x: 0.64, y: 0.64}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
@@ -189,8 +189,8 @@ BoxCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0.19999999}
-    pivot: {x: 0.5, y: 0.34375}
+    border: {x: 0, y: 0, z: 0, w: 0.06}
+    pivot: {x: 0.5, y: 0.453125}
     oldSize: {x: 0.64, y: 0.64}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
@@ -207,7 +207,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5941031085044499005}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13229cb257e393a4b9e2d7faa92dc220, type: 3}
   m_Name: 
@@ -220,10 +220,6 @@ MonoBehaviour:
   Plataform:
     serializedVersion: 2
     m_Bits: 8
-  RageAttackCooldown: 0
-  RageAttackVelocity: 0
-  RageAttackDuration: 0
-  rangedAttack: {fileID: 0}
   bossStats: {fileID: 0}
   audioGround: {fileID: 8300000, guid: 69be8d0f7ce96a74b92a4e991bde141f, type: 3}
 --- !u!114 &491243974885270559
@@ -233,7 +229,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5941031085044499005}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 88c22696410d78840a196a66192d980e, type: 3}
   m_Name: 
@@ -255,7 +251,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5941031085044499005}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f97ee631feaed6ed88a40036db9483fa, type: 3}
   m_Name: 
@@ -277,7 +273,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5941031085044499005}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8db80cc75e0590d44bc8a953a9633e38, type: 3}
   m_Name: 

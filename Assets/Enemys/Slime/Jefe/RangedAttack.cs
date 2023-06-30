@@ -30,6 +30,7 @@ public class RangedAttack : MonoBehaviour
     private float originalScale;
     private Vector2 direccionIncidencia;
     private AI_SlimeBoss boss;
+    private bool Raging = false;
 
 
     private void Awake()
@@ -62,7 +63,7 @@ public class RangedAttack : MonoBehaviour
             attackTimer = 0f;
         }
 
-        if (isAttacking && isRage && Colisionando && !boss.getCanJump()){
+        if (isAttacking && isRage && Colisionando && !boss.getCanJump() && Raging){
             slimeRB.velocity = direccionRebote;
         }
 
@@ -113,7 +114,11 @@ public class RangedAttack : MonoBehaviour
         ResumeSlimeMovement();
         Colisionando = false;
         isAttacking = false;
-        if (isEnraged) isRage = true;
+        if (isEnraged)
+        {
+            isRage = true;
+            Debug.Log("JAJANT");
+        }
     }
 
     private IEnumerator PerformRageAttackCoroutine(){
@@ -136,6 +141,7 @@ public class RangedAttack : MonoBehaviour
             slimeRB.AddForce(new Vector2(RageAttackVelocity * valor * -1, RageAttackVelocity), ForceMode2D.Impulse);
         }
         Debug.Log(slimeRB.velocity.x + " " + slimeRB.velocity.y);
+        Raging = true;
 
         yield return new WaitForSeconds(rageAttackDuration);
 
@@ -143,6 +149,7 @@ public class RangedAttack : MonoBehaviour
         ResumeSlimeMovement();
         isAttacking = false;
         isRage = false;
+        Raging = false;
     }
 
     private void PauseSlimeMovement()

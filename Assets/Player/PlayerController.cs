@@ -48,7 +48,6 @@ public class PlayerController : MonoBehaviour
         onKnockback = false;
         canKnockback = true;
         PolygonCollider2D playerCollider = GetComponent<PolygonCollider2D>();
-        Debug.Log(("El ancho es", playerCollider.bounds.size.x, "y el largo es de", playerCollider.bounds.size.y));
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         audioSource = GetComponent<AudioSource>();
         walkSound = false;
@@ -132,13 +131,11 @@ public class PlayerController : MonoBehaviour
             rigidBody.AddForce(new Vector2(0, vertical * velVerticalJugador), ForceMode2D.Impulse);
             canJump = false;
             trail.emitting = false;
-            Debug.Log("Saltando");
         }
         // Agacharse
         if (vertical < 0 && !isCrouching && onFloor)
         {
             isCrouching = true;
-            Debug.Log("Agachado");
             transform.localScale = new Vector2(transform.localScale.x, transform.localScale.y * 0.5f);
             animator.SetBool("crouch", true);
 
@@ -194,14 +191,12 @@ public class PlayerController : MonoBehaviour
         isSliding = true;
         trail.emitting = true;
         rigidBody.velocity = new Vector2(horizontal * 2* velSlide, 0f);
-        Debug.Log("start slide");
         yield return new WaitForSeconds(slideTime);
         isSliding = false;
         yield return new WaitForSeconds(slideCooldown);
         canSlide = true;
         trail.emitting = false;
         audioSource.Stop();
-        Debug.Log("end slide");
         animator.SetBool("sliding", false);
     }
 
