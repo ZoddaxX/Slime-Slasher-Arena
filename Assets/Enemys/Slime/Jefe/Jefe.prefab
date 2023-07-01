@@ -166,10 +166,6 @@ MonoBehaviour:
   Plataform:
     serializedVersion: 2
     m_Bits: 8
-  RageAttackCooldown: 10
-  RageAttackVelocity: 8
-  RageAttackDuration: 5
-  rangedAttack: {fileID: 77052415}
   bossStats: {fileID: 491243974885270559}
   audioGround: {fileID: 8300000, guid: 69be8d0f7ce96a74b92a4e991bde141f, type: 3}
 --- !u!114 &491243974885270559
@@ -189,10 +185,10 @@ MonoBehaviour:
   fuerzaKnockback: 0
   alturaKnockback: 0
   rangedAttack: {fileID: 0}
-  audioHit1: {fileID: 0}
-  audioHit2: {fileID: 0}
-  audioHit3: {fileID: 0}
-  audioDeath: {fileID: 0}
+  audioHit1: {fileID: 8300000, guid: 1dc0d40fab10afa408b5972c4b787fca, type: 3}
+  audioHit2: {fileID: 8300000, guid: 9112346d9cb08314494712985eda6463, type: 3}
+  audioHit3: {fileID: 8300000, guid: 6951368be98ed6740ba82352f8b35c94, type: 3}
+  audioDeath: {fileID: 8300000, guid: 1495bab5eadd9724b990b3439e18508b, type: 3}
   health: 100
 --- !u!114 &1307967226
 MonoBehaviour:

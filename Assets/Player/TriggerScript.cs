@@ -5,6 +5,12 @@ using UnityEngine;
 public class TriggerScript : MonoBehaviour
 {
     public PlayerController playerController;
+    private AudioSource audioSource;
+
+    void Awake(){
+        audioSource = GetComponent<AudioSource>();
+    }
+
     void OnTriggerEnter2D(Collider2D enemigo){
         if (enemigo.CompareTag("Enemigo") || enemigo.CompareTag("Jefe") || enemigo.gameObject.CompareTag("Projectile") )
         {
@@ -16,6 +22,7 @@ public class TriggerScript : MonoBehaviour
             {
                 playerController.PlayerTrigger(enemigo, enemigo.GetComponent<projectile_stats>().getDamage());
             }
+            audioSource.Play();
         }
     }
 }

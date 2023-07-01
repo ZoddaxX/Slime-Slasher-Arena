@@ -25,7 +25,7 @@ public class Boss_Stats : MonoBehaviour
         //Load rigidbody
         rb = GetComponent<Rigidbody2D>();
         rangedAttack = GetComponent<RangedAttack>();
-        audioSource = GetComponent<AudioSource>();
+        audioSource = gameObject.AddComponent<AudioSource>();
         healthPercentage = 1;
         if (NewStats.BossSlimeHealth == 0) NewStats.BossSlimeHealth = health;
         else health = NewStats.BossSlimeHealth;
@@ -34,7 +34,7 @@ public class Boss_Stats : MonoBehaviour
     public void TomarDano(float damage, float multiplier)
   {
     health -= damage;
-    healthPercentage = health * 100 / initialHealth;
+    healthPercentage = health / initialHealth;
     
     if (healthPercentage <= 0.4f)
     {
