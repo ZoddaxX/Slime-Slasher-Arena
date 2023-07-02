@@ -81,15 +81,21 @@ public class waveSpawner : MonoBehaviour
     void WaveCompleted()
     {
         state = SpawnState.counting;
-        waveCountDown = timeBetweenWaves;
+        waveCountDown = timeBetweenWaves + 7;
         nextWave++;
         if(nextWave + 1 > waves.Length)
         {
             nextWave = 0;
             Debug.Log("Oleadas completadas");
-            stats.SetActive(true);
-            NewStats statsScript = stats.GetComponent<NewStats>();
-            statsScript.RestartScript(); 
+            ControladorSonido.Instance.StopMainMusic();
+            StartCoroutine(HabilityPoints());
+        }
+        else if (nextWave == 2){
+            float valor = 0;
+            while (valor < 3f){
+                valor += Time.deltaTime;
+            }
+            ControladorSonido.Instance.PlayBossTheme();
         }
     }
     private IEnumerator SpawnWave(Wave _wave)
@@ -114,5 +120,18 @@ public class waveSpawner : MonoBehaviour
         Instantiate(_enemy, spawntransform, transform.rotation);
         Debug.Log("spawning enemy");
 
+    }
+
+    public int getWave(){
+        if (nextWave == 0) return 3;
+        return nextWave - 1;
+    }
+    IEnumerator HabilityPoints(){
+        yield return new WaitForSeconds(2);
+        ControladorSonido.Instance.PlayVictorySound();
+        yield return new WaitForSeconds(3);
+        stats.SetActive(true);
+        NewStats statsScript = stats.GetComponent<NewStats>();
+        statsScript.RestartScript(); 
     }
 }

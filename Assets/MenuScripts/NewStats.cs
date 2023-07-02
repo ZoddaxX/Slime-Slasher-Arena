@@ -15,6 +15,7 @@ public class NewStats : MonoBehaviour
     public TextMeshProUGUI LAttack;
     public TextMeshProUGUI HAttack;
     public TextMeshProUGUI Health;
+    public AudioClip HabilitySelectionTheme;
     public float MeleeSlimeDamageIncrease;
     public float MeleeSlimeHealthIncrease;
     public float BossSlimeMeleeDamageIncrease;
@@ -26,6 +27,7 @@ public class NewStats : MonoBehaviour
     public static float BossSlimeRangedDamage;
     public static float BossSlimeHealth;
 
+    private AudioSource audioSource;
 
     void Start(){
         player = GameObject.Find("Player");
@@ -61,6 +63,10 @@ public class NewStats : MonoBehaviour
     }
 
     public void RestartScript(){
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.volume = 0.3f;
+        audioSource.clip = HabilitySelectionTheme;
+        audioSource.Play();
         Time.timeScale = 0f;
     }
 
@@ -78,6 +84,8 @@ public class NewStats : MonoBehaviour
             puntosHabilidad = puntosHabilidadInicial;
             Time.timeScale = 1f;
             BuffEnemies();
+            ControladorSonido.Instance.PlayBattleTheme();
+            audioSource.Stop();
             gameObject.SetActive(false);
 
         }

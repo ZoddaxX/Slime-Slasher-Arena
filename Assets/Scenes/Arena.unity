@@ -307,9 +307,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: nuevoIntento, Assembly-CSharp
-        m_MethodName: TryAgain
+      - m_Target: {fileID: 843230007}
+        m_TargetAssemblyTypeName: NewStats, Assembly-CSharp
+        m_MethodName: moreLightAttack
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -822,9 +822,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: nuevoIntento, Assembly-CSharp
-        m_MethodName: TryAgain
+      - m_Target: {fileID: 843230007}
+        m_TargetAssemblyTypeName: NewStats, Assembly-CSharp
+        m_MethodName: moreHeavyAttack
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1692,11 +1692,12 @@ MonoBehaviour:
   LAttack: {fileID: 385753280}
   HAttack: {fileID: 845133267}
   Health: {fileID: 383826443}
-  MeleeSlimeDamageIncrease: 0
-  MeleeSlimeHealthIncrease: 0
-  BossSlimeMeleeDamageIncrease: 0
-  BossSlimeRangedDamageIncrease: 0
-  BossSlimeHealthIncrease: 0
+  HabilitySelectionTheme: {fileID: 8300000, guid: 690f2840c4b48a8478a5a25334894dd0, type: 3}
+  MeleeSlimeDamageIncrease: 2
+  MeleeSlimeHealthIncrease: 5
+  BossSlimeMeleeDamageIncrease: 2
+  BossSlimeRangedDamageIncrease: 2
+  BossSlimeHealthIncrease: 5
 --- !u!1 &845133266
 GameObject:
   m_ObjectHideFlags: 0
@@ -3228,9 +3229,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: nuevoIntento, Assembly-CSharp
-        m_MethodName: TryAgain
+      - m_Target: {fileID: 843230007}
+        m_TargetAssemblyTypeName: NewStats, Assembly-CSharp
+        m_MethodName: moreHealth
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4655,6 +4656,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: ControladorSonidos
       objectReference: {fileID: 0}
+    - target: {fileID: 4568986178495213852, guid: a7ad8de321a0c9248b210c1e220656d5, type: 3}
+      propertyPath: wave
+      value: 
+      objectReference: {fileID: 1703914520}
+    - target: {fileID: 4568986178495213852, guid: a7ad8de321a0c9248b210c1e220656d5, type: 3}
+      propertyPath: BossTheme
+      value: 
+      objectReference: {fileID: 8300000, guid: 6e6dd113861e24c42b059ca4640468bb, type: 3}
+    - target: {fileID: 4568986178495213852, guid: a7ad8de321a0c9248b210c1e220656d5, type: 3}
+      propertyPath: BattleTheme
+      value: 
+      objectReference: {fileID: 8300000, guid: 8468a91c46ca0744ca58f62651907edf, type: 3}
+    - target: {fileID: 4568986178495213852, guid: a7ad8de321a0c9248b210c1e220656d5, type: 3}
+      propertyPath: VictoryTheme1
+      value: 
+      objectReference: {fileID: 8300000, guid: 5bba9094c29286743abb7773272eeb9a, type: 3}
+    - target: {fileID: 4568986178495213852, guid: a7ad8de321a0c9248b210c1e220656d5, type: 3}
+      propertyPath: VictoryTheme2
+      value: 
+      objectReference: {fileID: 8300000, guid: 3dfe2570899eaa743ab716928679eb67, type: 3}
     - target: {fileID: 4568986178495213854, guid: a7ad8de321a0c9248b210c1e220656d5, type: 3}
       propertyPath: m_RootOrder
       value: 10
