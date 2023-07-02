@@ -12,6 +12,7 @@ public class Slime_Stats : MonoBehaviour
     public AudioClip audioHit2;
     public AudioClip audioHit3;
     public AudioClip audioDeath;
+    public Animator animator;
 
     [SerializeField] private float health = 10;
     private Rigidbody2D rb;
@@ -53,13 +54,14 @@ public class Slime_Stats : MonoBehaviour
   {
         rb.simulated = false;
         ControladorSonido.Instance.ReproducirSonido(audioDeath);
+        animator.SetBool("dead", true);
 
         // Get the sprite renderer component
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
 
         // Change the transparency of the sprite
         Color spriteColor = spriteRenderer.color;
-        spriteColor.a = 0.5f; // Set the desired alpha value (0.0f to 1.0f)
+        //spriteColor.a = 0.5f; // Set the desired alpha value (0.0f to 1.0f)
         spriteRenderer.color = spriteColor;
 
         // Delayed destruction
