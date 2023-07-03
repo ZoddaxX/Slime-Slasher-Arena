@@ -56,7 +56,7 @@ public class RangedAttack : MonoBehaviour
         else if (attackTimer > attackCd && !isAttacking && isRage && isEnraged)
         {
             Debug.Log("BUG");
-            while (!boss.getCanJump()){}
+            //while (!boss.getCanJump()){}
             StartCoroutine(PerformRageAttackCoroutine());
             attackTimer = 0f;
         }
@@ -72,7 +72,7 @@ public class RangedAttack : MonoBehaviour
 
     }
 
-    private System.Collections.IEnumerator PerformAttackCoroutine()
+    private IEnumerator PerformAttackCoroutine()
     {
         isAttacking = true;
         PauseSlimeMovement();
