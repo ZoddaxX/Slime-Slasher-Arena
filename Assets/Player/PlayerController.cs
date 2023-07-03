@@ -211,7 +211,6 @@ public class PlayerController : MonoBehaviour
             yield return 0;
         }
         onKnockback = false;
-        Debug.Log("PUEDES MOVERTE");
         yield return 0;
     }
 

@@ -32,51 +32,12 @@ public class SlimeAttack : MonoBehaviour
       tiempoSiguienteAtaque -= Time.deltaTime;
     }
 
-    /*if (SlimeCollider.IsTouching(PlayerHitbox)){
-      Debug.Log("player recibe daño");
-      Golpe();
-      tiempoSiguienteAtaque = tiempoEntreAtaque;
-    }
-    */
-
-    /*
-    if (tiempoSiguienteAtaque != tiempoEntreAtaque){
-      if ( (tiempoEntreAtaque - 0.3) > tiempoSiguienteAtaque) playerRender.material.SetColor("_Color", Color.red);
-    }
-    /*
-    if (Input.GetKeyDown(KeyCode.Q)){
-      PlayerCollider.transform.GetComponent<Player_Stats>().TomarDaño(dañoGolpe);
-    }
-    */
+    
   }
 
   public float getDamage(){
     return dañoGolpe;
   }
 
-  /*private void Golpe(){
-    var playerRender = PlayerGameObject.GetComponent<Renderer>();
-    PlayerCollider.transform.GetComponent<Player_Stats>().TomarDano(dañoGolpe);
-    if ( (tiempoSiguienteAtaque) > (tiempoEntreAtaque - 0.3f)){
-      playerRender.material.SetColor("_Color", Color.red);
-    }
-    playerRender.material.SetColor("_Color", Color.white);
-  }*/
-
-  /*
-  void OnDrawGizmos(){
-  Gizmos.color = Color.red;
-
-  Gizmos.DrawWireCube(controladorGolpe.position, controladorGolpe.Scale);
-  }
-  */ 
-  /*
-  void OnTriggerEnter2D(Collider2D other){
-    Debug.Log("entra al ontriggerenter");
-    if (other.tag == "Jugador"){
-      Player.transform.GetComponent<Player_Stats>().TomarDaño(dañoGolpe);
-      Debug.Log("entra al if");
-    }
-  }
-  */
+  
 }

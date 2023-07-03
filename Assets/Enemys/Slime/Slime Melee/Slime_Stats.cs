@@ -13,6 +13,7 @@ public class Slime_Stats : MonoBehaviour
     public AudioClip audioHit3;
     public AudioClip audioDeath;
     public Animator animator;
+    public GameObject blood;
 
     [SerializeField] private float health = 10;
     private Rigidbody2D rb;
@@ -47,6 +48,7 @@ public class Slime_Stats : MonoBehaviour
       direccion.Normalize();
       direccion += alturaKnockback * Vector2.up;
       rb.AddForce(direccion * fuerzaKnockback * multiplier, ForceMode2D.Impulse);
+      StartCoroutine(bleed());
     }
   }
 
@@ -67,6 +69,13 @@ public class Slime_Stats : MonoBehaviour
         // Delayed destruction
         float destroyDelay = 2f; 
         Destroy(gameObject, destroyDelay);
+    }
+
+private IEnumerator bleed()
+    {
+        blood.SetActive(true);
+        yield return new WaitForSeconds(0.3f);
+        blood.SetActive(false);
     }
 }
 
