@@ -579,7 +579,7 @@ MonoBehaviour:
   alturaKnockback: 3
   fuerzaKnockback: 9
   invisTimer: 1
-  audioSlide: {fileID: 8300000, guid: 1c6b80e43d1a4b3469c0b7f619ad74e1, type: 3}
+  audioSlide: {fileID: 8300000, guid: 4f481ff5e46e1da4f9db67484662b12d, type: 3}
   audioWalk: {fileID: 8300000, guid: 583cb95b482c5e74cb1c5ff33a5b9291, type: 3}
   animator: {fileID: 6202632940332064267}
   trail: {fileID: 6717052501381817149}
@@ -660,7 +660,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 583cb95b482c5e74cb1c5ff33a5b9291, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 194f881f2bfaa2847aad6f04550cd928, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.1
   m_Pitch: 1
@@ -1016,3 +1016,4 @@ MonoBehaviour:
   playerController: {fileID: 8204650090437841390}
   player_stats: {fileID: 4691168060286217773}
   GetHealth: {fileID: 8300000, guid: 8ede382414a6f844599891964c9b338d, type: 3}
+  audioSource: {fileID: 5375215004217280458}

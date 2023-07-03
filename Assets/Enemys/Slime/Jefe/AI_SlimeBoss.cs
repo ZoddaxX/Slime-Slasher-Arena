@@ -82,11 +82,13 @@ public class AI_SlimeBoss : MonoBehaviour
             if (distancia <= agro_Range)
             {
                 slime_agro();
+                Debug.Log("getting aggro");
             }
 
             else
             {
                 jump(sentido, velHorizontal, velSalto);
+                Debug.Log("jefe saltando");
 
                 if (sentido)
                 {
@@ -118,12 +120,15 @@ public class AI_SlimeBoss : MonoBehaviour
         if (sentido_s)
         {
             slimeRB.AddForce(new Vector2(velHorizontal, velSalto), ForceMode2D.Impulse);
+            Debug.Log("jump1");
         }
         else
         {
             slimeRB.AddForce(new Vector2(-velHorizontal, velSalto), ForceMode2D.Impulse);
+            Debug.Log("jump2");
         }
         spriteRenderer.flipX = !sentido_s;
+        Debug.Log("flipping boss sprite");
     }
 
     void slime_agro()

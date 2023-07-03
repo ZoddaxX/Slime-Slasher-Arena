@@ -5,9 +5,9 @@ using UnityEngine;
 public class TriggerScript : MonoBehaviour
 {
     public PlayerController playerController;
-    private AudioSource audioSource;
     public Player_Stats player_stats;
     public AudioClip GetHealth;
+    public AudioSource audioSource;
 
     void Awake(){
         audioSource = GetComponent<AudioSource>();
@@ -24,7 +24,7 @@ public class TriggerScript : MonoBehaviour
             {
                 playerController.PlayerTrigger(enemigo, enemigo.GetComponent<projectile_stats>().getDamage());
             }
-            audioSource.Play();
+            //audioSource.Play();
         }
         else if (enemigo.CompareTag("Collectible"))
         {

@@ -14,6 +14,7 @@ public class Boss_Stats : MonoBehaviour
   public AudioClip audioHit3;
   public AudioClip audioDeath;
   public GameObject Corazon;
+  public Animator animator;
 
   [SerializeField] private float health = 10;
   private Rigidbody2D rb;
@@ -39,7 +40,6 @@ public class Boss_Stats : MonoBehaviour
     
     if (healthPercentage <= 0.4f)
     {
-      Debug.Log("TOY ENOJAO >:D");
       rangedAttack.rageMode();
     }
     if (health <= 0)
@@ -70,11 +70,12 @@ public class Boss_Stats : MonoBehaviour
 
         // Change the transparency of the sprite
         Color spriteColor = spriteRenderer.color;
-        spriteColor.a = 0.5f; // Set the desired alpha value (0.0f to 1.0f)
         spriteRenderer.color = spriteColor;
         Instantiate(Corazon, gameObject.transform.position, Quaternion.identity);
         Instantiate(Corazon, gameObject.transform.position, Quaternion.identity);
         Instantiate(Corazon, gameObject.transform.position, Quaternion.identity);
+
+        animator.SetBool("dead", true);
         // Delayed destruction
         float destroyDelay = 2f; 
         Destroy(gameObject, destroyDelay);

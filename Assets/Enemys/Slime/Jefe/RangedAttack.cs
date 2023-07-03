@@ -45,13 +45,13 @@ public class RangedAttack : MonoBehaviour
 
     private void Update()
     {
+        
         direccionIncidencia = slimeRB.velocity;
         attackTimer += Time.deltaTime;
         if (attackTimer > attackCd && !isAttacking && !isEnraged)
         {
             StartCoroutine(PerformAttackCoroutine());
             attackTimer = 0f;
-            Debug.Log(isEnraged);
         }
         else if (attackTimer > attackCd && !isAttacking && isRage && isEnraged)
         {
