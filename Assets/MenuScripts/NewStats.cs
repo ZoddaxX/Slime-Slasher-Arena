@@ -9,7 +9,7 @@ public class NewStats : MonoBehaviour
     public GameObject player;
     public PlayerAttack playerattack;
     public Player_Stats playerstats;
-    public int puntosHabilidadInicial;
+    public int puntosHabilidadInicial = 2;
     public int puntosHabilidad;
     public TextMeshProUGUI Puntos;
     public TextMeshProUGUI LAttack;
@@ -82,10 +82,11 @@ public class NewStats : MonoBehaviour
         if (puntosHabilidad == 0)
         {
             puntosHabilidad = puntosHabilidadInicial;
-            Time.timeScale = 1f;
             BuffEnemies();
+            Time.timeScale = 1f;
             ControladorSonido.Instance.PlayBattleTheme();
             audioSource.Stop();
+            Puntos.text = puntosHabilidad.ToString();
             gameObject.SetActive(false);
 
         }

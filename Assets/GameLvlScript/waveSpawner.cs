@@ -86,10 +86,10 @@ public class waveSpawner : MonoBehaviour
         nextWave++;
         if (nextWave >= waves.Length)
         {
+            StartCoroutine(HabilityPoints());
             nextWave = 0;
             Debug.Log("Oleadas completadas");
             ControladorSonido.Instance.StopMainMusic();
-            StartCoroutine(HabilityPoints());
         }
         else if (nextWave == 2)
         {
