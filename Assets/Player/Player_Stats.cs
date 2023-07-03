@@ -51,4 +51,10 @@ public class Player_Stats : MonoBehaviour
   public float GetMaxHealth(){
     return maxHp;
   }
+
+  public void moreHealth(float vida){
+    if (health + vida > maxHp) health = maxHp;
+    else health += vida;
+    slider.transform.GetComponent<HpBarScript>().setHealth(health,maxHp);
+  }
 }

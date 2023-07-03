@@ -13,6 +13,7 @@ public class Boss_Stats : MonoBehaviour
   public AudioClip audioHit2;
   public AudioClip audioHit3;
   public AudioClip audioDeath;
+  public GameObject Corazon;
 
   [SerializeField] private float health = 10;
   private Rigidbody2D rb;
@@ -71,7 +72,9 @@ public class Boss_Stats : MonoBehaviour
         Color spriteColor = spriteRenderer.color;
         spriteColor.a = 0.5f; // Set the desired alpha value (0.0f to 1.0f)
         spriteRenderer.color = spriteColor;
-
+        Instantiate(Corazon, gameObject.transform.position, Quaternion.identity);
+        Instantiate(Corazon, gameObject.transform.position, Quaternion.identity);
+        Instantiate(Corazon, gameObject.transform.position, Quaternion.identity);
         // Delayed destruction
         float destroyDelay = 2f; 
         Destroy(gameObject, destroyDelay);

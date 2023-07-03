@@ -189,6 +189,7 @@ MonoBehaviour:
   audioHit2: {fileID: 8300000, guid: 9112346d9cb08314494712985eda6463, type: 3}
   audioHit3: {fileID: 8300000, guid: 6951368be98ed6740ba82352f8b35c94, type: 3}
   audioDeath: {fileID: 8300000, guid: 1495bab5eadd9724b990b3439e18508b, type: 3}
+  Corazon: {fileID: 7391518461035752669, guid: 05161b9389bba8947ad9a0be9aea167b, type: 3}
   health: 100
 --- !u!114 &1307967226
 MonoBehaviour:

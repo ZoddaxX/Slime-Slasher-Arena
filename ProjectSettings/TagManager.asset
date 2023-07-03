@@ -13,6 +13,7 @@ TagManager:
   - Jefe
   - Projectile
   - UI
+  - Collectible
   layers:
   - Default
   - TransparentFX

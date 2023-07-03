@@ -13,6 +13,7 @@ public class Slime_Stats : MonoBehaviour
     public AudioClip audioHit3;
     public AudioClip audioDeath;
     public Animator animator;
+    public GameObject Corazon;
 
     [SerializeField] private float health = 10;
     private Rigidbody2D rb;
@@ -63,6 +64,8 @@ public class Slime_Stats : MonoBehaviour
         Color spriteColor = spriteRenderer.color;
         //spriteColor.a = 0.5f; // Set the desired alpha value (0.0f to 1.0f)
         spriteRenderer.color = spriteColor;
+        int valor = Random.Range(1,6);
+        if (valor == 1) Instantiate(Corazon, gameObject.transform.position, Quaternion.identity);
 
         // Delayed destruction
         float destroyDelay = 2f; 

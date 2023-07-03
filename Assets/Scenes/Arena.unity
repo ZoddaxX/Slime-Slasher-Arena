@@ -4688,7 +4688,7 @@ PrefabInstance:
     - target: {fileID: 4568986178495213852, guid: a7ad8de321a0c9248b210c1e220656d5, type: 3}
       propertyPath: BattleTheme
       value: 
-      objectReference: {fileID: 8300000, guid: 8468a91c46ca0744ca58f62651907edf, type: 3}
+      objectReference: {fileID: 8300000, guid: b77ecac87c9e0004ead4a5733ca72acc, type: 3}
     - target: {fileID: 4568986178495213852, guid: a7ad8de321a0c9248b210c1e220656d5, type: 3}
       propertyPath: VictoryTheme1
       value: 

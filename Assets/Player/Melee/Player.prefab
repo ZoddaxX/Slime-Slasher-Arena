@@ -1014,3 +1014,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerController: {fileID: 8204650090437841390}
+  player_stats: {fileID: 4691168060286217773}
+  GetHealth: {fileID: 8300000, guid: 8ede382414a6f844599891964c9b338d, type: 3}
