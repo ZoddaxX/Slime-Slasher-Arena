@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class waveSpawner : MonoBehaviour
 {
-    public enum SpawnState { spawning, waiting, counting}
+    public enum SpawnState { spawning, waiting, counting }
+
     [System.Serializable]
     public class Wave
     {
@@ -13,25 +15,24 @@ public class waveSpawner : MonoBehaviour
         public int count;
         public float rate;
     }
+
     public Wave[] waves;
-
     public float spawnRange = 40f;
-
-    private int nextWave = 0;
-
     public float timeBetweenWaves = 5f;
     public float waveCountDown;
-
-    private float searchCountDown = 1f;
-
     public SpawnState state = SpawnState.counting;
-
     public GameObject stats;
+    public TextMeshProUGUI waveCounterText;
+    public TextMeshProUGUI waveNameText;
+
+    private int nextWave = 0;
+    private float searchCountDown = 1f;
 
     private void Start()
     {
         waveCountDown = timeBetweenWaves;
     }
+
     private void Update()
     {
         if (state == SpawnState.waiting)
@@ -46,19 +47,20 @@ public class waveSpawner : MonoBehaviour
             }
         }
 
-        if(waveCountDown <= 0)
+        if (waveCountDown <= 0)
         {
-            if (state != SpawnState.spawning)
+            if (waveCountDown <= 0 && state != SpawnState.spawning)
             {
-                //codigo pa spawnear
                 StartCoroutine(SpawnWave(waves[nextWave]));
             }
-            
         }
         else
         {
             waveCountDown -= Time.deltaTime;
+            
         }
+        UpdateUI();
+        
     }
 
     bool EnemyStillAlive()
@@ -73,7 +75,6 @@ public class waveSpawner : MonoBehaviour
                 return false;
             }
         }
-        
 
         return true;
     }
@@ -81,23 +82,28 @@ public class waveSpawner : MonoBehaviour
     void WaveCompleted()
     {
         state = SpawnState.counting;
-        waveCountDown = timeBetweenWaves + 7;
+        waveCountDown = timeBetweenWaves;
         nextWave++;
-        if(nextWave + 1 > waves.Length)
+        if (nextWave >= waves.Length)
         {
             nextWave = 0;
             Debug.Log("Oleadas completadas");
             ControladorSonido.Instance.StopMainMusic();
             StartCoroutine(HabilityPoints());
         }
-        else if (nextWave == 2){
+        else if (nextWave == 2)
+        {
             float valor = 0;
-            while (valor < 3f){
+            while (valor < 3f)
+            {
                 valor += Time.deltaTime;
             }
             ControladorSonido.Instance.PlayBossTheme();
         }
+
+        UpdateUI();
     }
+
     private IEnumerator SpawnWave(Wave _wave)
     {
         state = SpawnState.spawning;
@@ -111,6 +117,7 @@ public class waveSpawner : MonoBehaviour
 
         yield break;
     }
+
     void SpawnEnemy(Transform _enemy)
     {
         float randomNumber = Random.Range(-spawnRange, spawnRange);
@@ -119,19 +126,42 @@ public class waveSpawner : MonoBehaviour
         spawntransform.y -= 5;
         Instantiate(_enemy, spawntransform, transform.rotation);
         Debug.Log("spawning enemy");
-
     }
 
-    public int getWave(){
+    public int getWave()
+    {
         if (nextWave == 0) return 3;
         return nextWave - 1;
     }
-    IEnumerator HabilityPoints(){
+
+    IEnumerator HabilityPoints()
+    {
         yield return new WaitForSeconds(2);
         ControladorSonido.Instance.PlayVictorySound();
         yield return new WaitForSeconds(3);
         stats.SetActive(true);
         NewStats statsScript = stats.GetComponent<NewStats>();
-        statsScript.RestartScript(); 
+        statsScript.RestartScript();
+
+        // Update the UI
+        waveCounterText.gameObject.SetActive(false);
+        waveNameText.gameObject.SetActive(false);
+    }
+
+    private void UpdateUI()
+    {
+        waveCounterText.gameObject.SetActive(state == SpawnState.counting);
+        waveNameText.gameObject.SetActive(state == SpawnState.counting);
+
+        if (state == SpawnState.counting)
+        {
+            waveCounterText.text = "Oleada " + (nextWave + 1).ToString() + " en ";
+            waveNameText.text =  Mathf.Ceil(waveCountDown).ToString();
+        }
+        else
+        {
+            waveCounterText.text = "";
+            waveNameText.text = "";
+        }
     }
 }

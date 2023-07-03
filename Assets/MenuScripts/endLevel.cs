@@ -10,8 +10,7 @@ public class endLevel : MonoBehaviour
 
     private void Update()
     {
-        
-        // Subscribe to the death event of the enemy
+        enemyToWatch = GameObject.FindGameObjectWithTag("Jefe");
         if (enemyToWatch != null)
         {
             spawned = true;

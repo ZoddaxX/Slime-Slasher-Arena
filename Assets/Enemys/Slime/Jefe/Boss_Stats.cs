@@ -15,10 +15,10 @@ public class Boss_Stats : MonoBehaviour
   public AudioClip audioDeath;
   public GameObject Corazon;
   public Animator animator;
+  public float healthPercentage;
+  public float health = 40;
 
-  [SerializeField] private float health = 10;
   private Rigidbody2D rb;
-  private float healthPercentage;
   private float initialHealth;
   private AudioSource audioSource;
 
